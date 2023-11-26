@@ -39,6 +39,12 @@ function EventDetails(props) {
             <h3 className={styles["quaternary-heading"]}>
               Arduino Workshop (Hands on Session)
             </h3>
+            <div className={styles["info-field-container"]}>
+              <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
+                <i className="fa-solid fa-calendar"></i>
+                <span>Event Dated for: 12/12/2023</span>
+              </div>
+            </div>
             <a
               href="#registrations"
               className={`${styles.btn} ${styles["btn-reg-rev"]}`}

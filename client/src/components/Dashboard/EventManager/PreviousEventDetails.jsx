@@ -38,6 +38,12 @@ function PreviousEventDetails(props) {
             <h3 className={styles["quaternary-heading"]}>
               Python Workshop: Create your own App
             </h3>
+            <div className={styles["info-field-container"]}>
+              <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
+                <i className="fa-solid fa-calendar"></i>
+                <span>Event Completed on: 10/11/2023</span>
+              </div>
+            </div>
             <a
               href="#reviews"
               className={`${styles.btn} ${styles["btn-reg-rev"]}`}
