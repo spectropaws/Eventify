@@ -39,7 +39,7 @@ function PreviousEventDetails(props) {
               Python Workshop: Create your own App
             </h3>
             <a
-              href="#registrations"
+              href="#reviews"
               className={`${styles.btn} ${styles["btn-reg-rev"]}`}
             >
               View Reviews
@@ -106,8 +106,164 @@ function PreviousEventDetails(props) {
         </table>
       </section>
 
-      <section className={styles["event-rev-section"]}>
+      <section id="reviews" className={styles["event-rev-section"]}>
         <h2 className={styles["secondary-heading"]}>Event Reviews</h2>
+        <div className={styles["reviews-container"]}>
+          <div className={styles["review-card"]}>
+            <h4 className={styles["quaternary-heading"]}>erenyeager80%</h4>
+            <div className={styles["star-ratings-container"]}>
+              <div className={styles["rate-head"]}>
+                <span className={styles["rating"]}>Rating: </span>
+              </div>
+              <div className={styles["stars-container"]}>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+              </div>
+            </div>
+            <span className={styles["review-text"]}>
+              The event was very good and i really enjoyed it a lot i was
+              feeling very blessed that i got an opportunity to attend this
+              exciting event.
+            </span>
+          </div>
+
+          <div className={styles["review-card"]}>
+            <h4 className={styles["quaternary-heading"]}>erenyeager80%</h4>
+            <div className={styles["star-ratings-container"]}>
+              <div className={styles["rate-head"]}>
+                <span className={styles["rating"]}>Rating: </span>
+              </div>
+              <div className={styles["stars-container"]}>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+              </div>
+            </div>
+            <span className={styles["review-text"]}>
+              The event was very good and i really enjoyed it a lot i was
+              feeling very blessed that i got an opportunity to attend this
+              exciting event.
+            </span>
+          </div>
+
+          <div className={styles["review-card"]}>
+            <h4 className={styles["quaternary-heading"]}>erenyeager80%</h4>
+            <div className={styles["star-ratings-container"]}>
+              <div className={styles["rate-head"]}>
+                <span className={styles["rating"]}>Rating: </span>
+              </div>
+              <div className={styles["stars-container"]}>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+              </div>
+            </div>
+            <span className={styles["review-text"]}>
+              The event was very good and i really enjoyed it a lot i was
+              feeling very blessed that i got an opportunity to attend this
+              exciting event.
+            </span>
+          </div>
+
+          <div className={styles["review-card"]}>
+            <h4 className={styles["quaternary-heading"]}>erenyeager80%</h4>
+            <div className={styles["star-ratings-container"]}>
+              <div className={styles["rate-head"]}>
+                <span className={styles["rating"]}>Rating: </span>
+              </div>
+              <div className={styles["stars-container"]}>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+              </div>
+            </div>
+            <span className={styles["review-text"]}>
+              The event was very good and i really enjoyed it a lot i was
+              feeling very blessed that i got an opportunity to attend this
+              exciting event.
+            </span>
+          </div>
+
+          <div className={styles["review-card"]}>
+            <h4 className={styles["quaternary-heading"]}>erenyeager80%</h4>
+            <div className={styles["star-ratings-container"]}>
+              <div className={styles["rate-head"]}>
+                <span className={styles["rating"]}>Rating: </span>
+              </div>
+              <div className={styles["stars-container"]}>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+                <i
+                  className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                ></i>
+              </div>
+            </div>
+            <span className={styles["review-text"]}>
+              The event was very good and i really enjoyed it a lot i was
+              feeling very blessed that i got an opportunity to attend this
+              exciting event.
+            </span>
+          </div>
+        </div>
       </section>
     </>
   );
