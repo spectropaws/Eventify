@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import styles from "./dashboard.module.css";
+import styles from "./../dashboard.module.css";
 
 function EventDetails(props) {
   function handleCloseEvent() {

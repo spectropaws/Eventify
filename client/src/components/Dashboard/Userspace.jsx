@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./dashboard.module.css";
 import EventManager from "./EventManager";
-import EventDetails from "./EventDetails";
+import User from "./User";
 import Navigation from "./Navigation";
-import UserProfile from "./UserProfile";
 
 function Userspace(props) {
-  const [details, setDetails] = useState(false);
+  const [role, setRole] = useState(false);
 
   useEffect(() => {
     const allLinks = document.querySelectorAll("a:link");
@@ -37,14 +36,10 @@ function Userspace(props) {
         <div className={styles.body}>
           <Navigation token={props.token} />
           <div className={styles["user-space"]}>
-            {!details ? (
-              <>
-                <UserProfile />
-
-                <EventManager state={setDetails} />
-              </>
+            {!role ? (
+              <EventManager state={setRole} />
             ) : (
-              <EventDetails state={setDetails} />
+              <User state={setRole} />
             )}
           </div>
         </div>

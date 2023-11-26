@@ -1,16 +1,21 @@
 const { Pool, Client } = require("pg");
 const credentials = {
-  user: process.env.DARA,
-  host: "localhost",
-  database: "nodedemo",
-  password: "yourpassword",
-  port: 5432,
+  user: process.env.DB_USERNAME,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 };
 
-function userExists(username) {
-  // check in database if username already exists. return true or false
+const pool = new Pool(credentials);
+
+const userExists = (username) => {
+  // const client = await pool.connect();
+  // const res = client.query("select * from users");
+  // console.log(res);
+  // client.release();
   return false;
-}
+};
 
 function register(User) {
   /* User = {
