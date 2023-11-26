@@ -6,7 +6,7 @@ import User from "./User";
 import Navigation from "./Navigation";
 
 function Userspace(props) {
-  const [role, setRole] = useState(false);
+  const [role, setRole] = useState(true);
 
   useEffect(() => {
     const allLinks = document.querySelectorAll("a:link");
