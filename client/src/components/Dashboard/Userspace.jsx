@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./dashboard.module.css";
 import EventManager from "./EventManager";
 import User from "./User";
 import Navigation from "./Navigation";
 
 function Userspace(props) {
-  const [role, setRole] = useState(true);
-
   useEffect(() => {
     const allLinks = document.querySelectorAll("a:link");
 
@@ -34,12 +32,12 @@ function Userspace(props) {
     <>
       <div className={styles["body-container"]}>
         <div className={styles.body}>
-          <Navigation token={props.token} />
+          <Navigation token={props.token} user={props.user} />
           <div className={styles["user-space"]}>
-            {!role ? (
-              <EventManager state={setRole} />
+            {props.user.role ? (
+              <EventManager user={props.user} />
             ) : (
-              <User state={setRole} />
+              <User user={props.user} />
             )}
           </div>
         </div>

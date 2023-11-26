@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./dashboard.module.css";
 
-function UserProfile() {
+function UserProfile(props) {
   return (
     <>
       <section id="profile" className={styles["back-cover"]}>
@@ -11,33 +11,39 @@ function UserProfile() {
       <section className={styles["profile-section"]}>
         <div className={styles["profile-card-container"]}>
           <div className={styles["profile-card"]}>
-            <h3 className={styles["tertiary-heading"]}>Robert Jr</h3>
+            <h3 className={styles["tertiary-heading"]}>{props.user.name}</h3>
             <h4 className={styles["quaternary-heading"]}>
-              Event Manager at Technocrats Ltd.
+              {props.user.role
+                ? "Event Manager " +
+                  (props.user.organization
+                    ? "at " + props.user.organization
+                    : "")
+                : "Normal User"}
             </h4>
             <p className={styles["profile-bio"]}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-              voluptatibus tempora quo, numquam fuga sapiente odit vitae fugiat
-              sed rerum eveniet labore sit accusamus officiis beatae omnis
-              dolore
+              {props.user.description ? props.user.description : "Bio"}
             </p>
             <div className={styles["user-field-container"]}>
               <div className={styles["user-field"]}>
-                <i class="fa-solid fa-user"></i>
-                <span>Username: robertjr001rj</span>
+                <i className="fa-solid fa-user"></i>
+                <span>Username: {props.user.username}</span>
               </div>
               <div className={styles["user-field"]}>
-                <i class="fa-solid fa-envelope"></i>
-                <span>Email: robertjr@gmail.com</span>
+                <i className="fa-solid fa-envelope"></i>
+                <span>Email: {props.user.email}</span>
               </div>
               <div className={styles["user-field"]}>
-                <i class="fa-solid fa-person"></i>
-                {/* <i class="fa-solid fa-person-dress"></i> */}
-                <span>Gender: Male</span>
+                <i className="fa-solid fa-person"></i>
+                {/* <i className="fa-solid fa-person-dress"></i> */}
+                <span>
+                  Gender: {props.user.gender ? props.user.gender : "Not set"}
+                </span>
               </div>
               <div className={styles["user-field"]}>
-                <i class="fa-solid fa-cake-candles"></i>
-                <span>34 years</span>
+                <i className="fa-solid fa-cake-candles"></i>
+                <span>
+                  {props.user.age ? props.user.age + " years" : "Not set"}
+                </span>
               </div>
             </div>
           </div>
@@ -45,7 +51,7 @@ function UserProfile() {
             href="#"
             className={`${styles.btn} ${styles["edit-btn"]} ${styles["edit-btn1"]}`}
           >
-            <i class="fa-solid fa-pen-to-square"></i>
+            <i className="fa-solid fa-pen-to-square"></i>
           </a>
         </div>
 
@@ -57,23 +63,23 @@ function UserProfile() {
             ></div>
             <div className={styles["social-links-container"]}>
               <div className={styles["social-link"]}>
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
                 <span>Phone: 1169-1376-2388</span>
               </div>
               <div className={styles["social-link"]}>
-                <i class="fa-brands fa-facebook"></i>
+                <i className="fa-brands fa-facebook"></i>
                 <span>Facebook: Robert Jr</span>
               </div>
               <div className={styles["social-link"]}>
-                <i class="fa-brands fa-instagram"></i>
+                <i className="fa-brands fa-instagram"></i>
                 <span>Instagram: robertjr@001</span>
               </div>
               <div className={styles["social-link"]}>
-                <i class="fa-brands fa-linkedin"></i>
+                <i className="fa-brands fa-linkedin"></i>
                 <span>Linkedin: Robert Jr</span>
               </div>
               <div className={styles["social-link"]}>
-                <i class="fa-brands fa-twitter"></i>
+                <i className="fa-brands fa-twitter"></i>
                 <span>Twitter: @robert001</span>
               </div>
             </div>
@@ -82,7 +88,7 @@ function UserProfile() {
             href="#"
             className={`${styles.btn} ${styles["edit-btn"]} ${styles["edit-btn2"]}`}
           >
-            <i class="fa-solid fa-pen-to-square"></i>
+            <i className="fa-solid fa-pen-to-square"></i>
           </a>
         </div>
       </section>

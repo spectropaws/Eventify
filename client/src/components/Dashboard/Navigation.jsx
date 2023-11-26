@@ -41,9 +41,9 @@ function Navigation(props) {
             className={`${styles["profile-text"]} ${styles["flex-container"]}`}
           >
             {/* Dynamic element */}
-            <span className={styles.username}>Robert Jr</span>
+            <span className={styles.username}>{props.user.name}</span>
             {/* Dynamic element */}
-            <span className={styles.userid}>robertjr@gmail.com</span>
+            <span className={styles.userid}>@{props.user.username}</span>
           </div>
         </div>
 
@@ -63,7 +63,7 @@ function Navigation(props) {
                 href="#upcoming-events"
                 className={`${styles.btn} ${styles["btn-profile-nav"]}`}
               >
-                Add Event
+                {props.user.role ? "Add Event" : "Upcoming Events"}
               </a>
             </li>
             <li className={styles["list-item"]}>
@@ -74,14 +74,17 @@ function Navigation(props) {
                 Previous Events
               </a>
             </li>
-            <li className={styles["list-item"]}>
-              <a
-                href="#previous-events"
-                className={`${styles.btn} ${styles["btn-profile-nav"]}`}
-              >
-                Search Events
-              </a>
-            </li>
+
+            {props.user.role && (
+              <li className={styles["list-item"]}>
+                <a
+                  href="#previous-events"
+                  className={`${styles.btn} ${styles["btn-profile-nav"]}`}
+                >
+                  Search Events
+                </a>
+              </li>
+            )}
           </ul>
         </div>
         <div className={styles.logout} onClick={handleLogout}>

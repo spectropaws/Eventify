@@ -3,7 +3,7 @@ import styles from "./../dashboard.module.css";
 
 function PreviousEventDetails(props) {
   function handleCloseEvent() {
-    props.state(false);
+    props.page("main");
   }
 
   return (

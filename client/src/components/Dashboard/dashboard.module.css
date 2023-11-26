@@ -165,7 +165,7 @@ html {
 
 .logout {
   width: 100%;
-  margin: 1rem auto 1rem;
+  margin: auto auto 3rem;
   text-align: center;
 }
 
@@ -247,6 +247,8 @@ html {
 .user-field-container {
   padding: 1.6rem 3.2rem;
   display: flex;
+  position: absolute;
+  bottom: 0;
   flex-direction: column;
   gap: 1.2rem;
 }

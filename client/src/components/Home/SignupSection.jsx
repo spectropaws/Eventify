@@ -21,7 +21,7 @@ function SignupSection() {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "User",
+    role: "user",
   });
   const navigate = useNavigate();
   const request = axios.create({
@@ -297,8 +297,12 @@ function SignupSection() {
                   onChange={handleSignupData}
                   value={signupData.role}
                 >
-                  <option name="user">User</option>
-                  <option name="manager">Event Manager</option>
+                  <option name="user" value="user">
+                    User
+                  </option>
+                  <option name="manager" value="manager">
+                    Event Manager
+                  </option>
                 </select>
               </div>
               <button>Sign Up</button>

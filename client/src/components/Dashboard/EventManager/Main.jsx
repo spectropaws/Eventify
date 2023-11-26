@@ -4,11 +4,11 @@ import styles from "./../dashboard.module.css";
 
 function Main(props) {
   function handleDetails() {
-    props.details(true);
+    props.page("event");
   }
 
   function handlePrevDetails() {
-    props.prevDetails(true);
+    props.page("prevEvent");
   }
 
   return (
@@ -190,7 +190,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>
@@ -221,7 +221,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>
@@ -251,7 +251,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>
@@ -281,7 +281,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>

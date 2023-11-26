@@ -6,8 +6,7 @@ import EventDetails from "./EventManager/EventDetails";
 import PreviousEventDetails from "./EventManager/PreviousEventDetails";
 
 function EventManager(props) {
-  const [details, setDetails] = useState(false);
-  const [prevDetails, setPrevDetails] = useState(false);
+  const [page, setPage] = useState("main");
 
   let upcomingEvents = [],
     previousEvents = [];
@@ -15,14 +14,15 @@ function EventManager(props) {
   function switchBoards() {
     var current;
 
-    if (details) current = <EventDetails state={setDetails} />;
-    else if (prevDetails)
-      current = <PreviousEventDetails state={setPrevDetails} />;
+    if (page === "event")
+      current = <EventDetails page={setPage} user={props.user} />;
+    else if (page === "prevEvent")
+      current = <PreviousEventDetails page={setPage} user={props.user} />;
     else
       current = (
         <>
-          <UserProfile />
-          <Main details={setDetails} prevDetails={setPrevDetails} />
+          <UserProfile user={props.user} />
+          <Main page={setPage} />
         </>
       );
 

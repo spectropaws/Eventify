@@ -15,7 +15,7 @@ function Main(props) {
 
   return (
     <>
-      <UserProfile />
+      <UserProfile user={props.user} />
 
       <section className={styles["upcoming-events-section"]}>
         <h2 className={styles["secondary-heading"]}>Registered Events</h2>

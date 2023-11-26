@@ -33,7 +33,7 @@ function Dashboard() {
 
   return (
     <>
-      <Userspace token={token} />
+      <Userspace token={token} user={user} />
     </>
   );
 }

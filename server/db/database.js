@@ -9,45 +9,53 @@ const credentials = {
 
 const pool = new Pool(credentials);
 
-const userExists = (username) => {
-  // const client = await pool.connect();
-  // const res = client.query("select * from users");
-  // console.log(res);
-  // client.release();
-  return false;
+const runQuery = async (query, values) => {
+  const client = await pool.connect();
+  const res = await client.query(query, values);
+  client.release();
+  return res;
 };
 
+async function userExists(username) {
+  const query = "select id from users where username = $1";
+  const values = [username];
+  const response = await runQuery(query, values);
+  return response.rows.length ? true : false;
+}
+
 function register(User) {
-  /* User = {
-        name: "",
-        username: "",
-        email: "",
-        passwordHash: binarydata,
-        salt: "",
-        role: true/false,
-    } */
-  // connects to database, auto-increment id and put these values
-  return true;
+  const query =
+    "insert into users(name, username, email, passwordHash, salt, role) values ($1, $2, $3, $4, $5, $6)";
+  const values = [
+    User.name,
+    User.username,
+    User.email,
+    User.passwordHash,
+    User.salt,
+    User.role,
+  ];
+  try {
+    runQuery(query, values);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-function getPasswordHashAndSalt(username) {
-  // return object of format {hash: "", salt: ""}
+async function getPasswordHashAndSalt(username) {
+  const query = "select passwordHash, salt from users where username = $1";
+  const values = [username];
+
+  const res = await runQuery(query, values);
+  return { hash: res.rows[0].passwordhash, salt: res.rows[0].salt };
 }
 
-function fetchUserDetails(username) {
-  // fetch all user details and return an object of format:
-  /* User = {
-        id: int,
-        name: "",
-        username: "",
-        email: "",
-        role: true/false,
-        age: Int,
-        designation: "",
-        organization: "",
-        porfilePhoto: ""
-    } */
-  return { username: "allah hu akbar" };
+async function fetchUserDetails(username) {
+  const query =
+    "select id, name, username, email, role, age, gender, designation, organization, profilePhoto from users where username = $1";
+  const values = [username];
+
+  const res = await runQuery(query, values);
+  return res.rows[0];
 }
 
 exports.userExists = userExists;

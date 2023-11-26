@@ -44,29 +44,29 @@ app.get("/", function (req, res) {
 });
 
 // Signup User
-app.post("/signup", jsonParser, (req, res) => {
+app.post("/signup", jsonParser, async (req, res) => {
   const User = {
     name: req.body.name,
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    isEventManager: req.body.role,
+    role: req.body.role,
   };
 
-  if (auth.signup(User)) {
+  if (await auth.signup(User)) {
     const token = generateToken();
 
     currentSessions[token] = User.username;
     res.send(token);
-  } else res.send("0");
+  } else res.send(null);
 });
 
 // SignIn User
-app.post("/signin", jsonParser, (req, res) => {
+app.post("/signin", jsonParser, async (req, res) => {
   if (req.body.token) {
     const username = currentSessions[req.body.token];
     if (username) {
-      return res.send(auth.getUserData());
+      return res.send(await auth.getUserData(username));
     } else return res.send(null);
   }
 
@@ -76,7 +76,7 @@ app.post("/signin", jsonParser, (req, res) => {
   };
 
   // new login session
-  if (auth.signin(User)) {
+  if (await auth.signin(User)) {
     const token = generateToken();
     currentSessions[token] = User.username;
     res.send(token);

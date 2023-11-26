@@ -3,36 +3,35 @@ const saltRounds = 10;
 const database = require("../db/database");
 const e = require("cors");
 
-function signin(User) {
-  // check if username exists and fetch salt and password hash
-  if (!database.userExists(User.username)) return null;
+async function signin(User) {
+  if (!(await database.userExists(User.username))) return null;
 
-  // temporary
-  return database.fetchUserDetails(User.username);
-
-  const checker = database.getPasswordHashAndSalt(User.username);
-  // hash the given password with the salt and compare the hashes. if hash matches. return user else null
-  bcrypt.hash(User.password, checker.salt, (err, hash) => {
-    if (err) console.log(err);
-    else {
-      bcrypt.compare(hash, checker.hash).then((res) => {
-        if (res) return fetchUserDetails(User.username);
-        else return null;
-      });
-    }
-  });
+  const checker = await database.getPasswordHashAndSalt(User.username);
+  const hash = await bcrypt.hash(User.password, checker.salt);
+  return hash === checker.hash
+    ? await database.fetchUserDetails(User.username)
+    : null;
 }
 
-function signup(User) {
-  if (database.userExists(User.username)) return null;
+async function signup(User) {
+  if (await database.userExists(User.username)) return null;
+  User.role = "user" ? false : true;
 
-  User.role = "User" ? false : true;
-  database.register(User);
-  return true;
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(User.password, salt);
+    User.passwordHash = hash;
+    User.salt = salt;
+    database.register(User);
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
 }
 
-function getUserData(username) {
-  return database.fetchUserDetails(username);
+async function getUserData(username) {
+  return await database.fetchUserDetails(username);
 }
 
 exports.signin = signin;

@@ -4,7 +4,7 @@ import styles from "./../dashboard.module.css";
 
 function EventDetails(props) {
   function handleCloseEvent() {
-    props.state(false);
+    props.page("main");
   }
 
   return (
