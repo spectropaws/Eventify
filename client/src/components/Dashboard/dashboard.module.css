@@ -1,0 +1,353 @@
+@import url("https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Playpen Sans", cursive;
+}
+
+.body-container {
+  height: 100vh;
+  background-color: black;
+  padding: 1rem 4.8rem;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+  color: #333;
+  height: 97vh;
+  background-color: #212529;
+  border-radius: 3rem;
+  overflow: hidden;
+  /* background-color: #f1f3f5; */
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.container {
+  padding: 1.6rem 3.2rem;
+}
+
+.primary-heading {
+  font-size: 4.4rem;
+  font-weight: 800;
+}
+
+.secondary-heading {
+  font-size: 3.6rem;
+  font-weight: 700;
+}
+
+.tertiary-heading {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.quaternary-heading {
+  font-size: 2.4rem;
+}
+
+/* ==================================== */
+.user-profile-nav {
+  height: 97vh;
+  background-color: #212529;
+  /* background-color: #ced4da; */
+  color: #fff;
+  z-index: 1;
+}
+
+.name {
+  font-size: 3rem;
+  font-weight: 800;
+  padding: 2rem 0 3.2rem 0;
+}
+
+.profile-img {
+  height: 15rem;
+  width: 15rem;
+  background: url("./../../../public/avatar2.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.profile-img::before {
+  content: "";
+  display: block;
+  height: 16.5rem;
+  width: 16.5rem;
+  background-color: #fff;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: -1;
+}
+
+.profile-text {
+  gap: 0rem;
+}
+
+.username {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.userid {
+  font-size: 1.6rem;
+  font-weight: 200;
+}
+
+.profile-nav {
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  gap: 0;
+}
+
+.list-item {
+  width: 100%;
+  text-align: center;
+}
+
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.btn-profile-nav:link,
+.btn-profile-nav:visited {
+  display: block;
+  width: 100%;
+  color: #fff;
+  font-size: 2rem;
+  padding: 1.6rem 0;
+  transition: all 0.3s ease;
+}
+
+.btn-profile-nav:hover {
+  background-color: #f1f3f5;
+  color: #333;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.logout {
+  width: 100%;
+  margin: auto auto 3rem;
+  text-align: center;
+}
+
+.btn-logout:link,
+.btn-logout:visited {
+  display: block;
+  width: 100%;
+  color: #fff;
+  font-size: 2rem;
+  padding: 1.6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #f1f3f5;
+  color: #333;
+}
+
+/* ======================================= */
+.user-space {
+  /* display: grid; */
+  /* grid-template-columns: 1fr 0.3fr; */
+  overflow-y: scroll;
+  background-color: #fff;
+  border-radius: 3rem;
+}
+
+.user-space::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================== */
+.back-cover {
+  padding: 1rem 3.2rem;
+  padding-right: 1.8rem;
+  height: 40vh;
+  /* grid-column: 1 / -1; */
+  color: #fff;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./../../../public/www.jpg");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* ============================================= */
+.profile-section {
+  /* height: 30rem; */
+  background-color: #f1f3f5;
+  /* background: hotpink; */
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-fields {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+/* ============================================ */
+.upcoming-events-section {
+  background-color: #f1f3f5;
+  padding: 1.6rem 3.2rem;
+}
+
+.card-container {
+  padding: 1.2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  gap: 2.4rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 0.4rem #777;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  /* transform: translateY(-1rem); */
+  box-shadow: 0 0.8rem 1.6rem #777;
+}
+
+.card-img {
+  /* height: 25%; */
+  height: 20rem;
+  background: url("./../../../public/www.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.card-info {
+  /* height: 75%; */
+  padding: 1.2rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.info-field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.info-field {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.if-date {
+  color: blue;
+}
+
+.if-time {
+  color: orange;
+}
+
+.if-tickets {
+  color: green;
+}
+
+.if-reg {
+  color: red;
+}
+
+.know-more-btn:link,
+.know-more-btn:visited {
+  text-align: center;
+  padding: 1.2rem 0;
+  border-radius: 1rem;
+  margin: 1rem 1.2rem;
+  font-size: 1.8rem;
+  border: 2px solid #212529;
+  background-color: #212529;
+  color: #fff;
+  box-shadow: 0 0.2rem 0.4rem #777;
+  transition: all 0.3s ease;
+  justify-self: flex-end;
+}
+
+.know-more-btn:hover,
+.know-more-btn:active {
+  background-color: #fff;
+  color: #333;
+}
+
+.add-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  border: 2px dashed #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  cursor: pointer;
+}
+
+.previous-events-section {
+  background-color: #f1f3f5;
+  padding: 1.6rem 3.2rem;
+}
+
+/* =========================================== */
+/* ========= EVENTS KNOW MORE PAGE =========== */
+.btn-close:link,
+.btn-close:visited {
+  font-size: 3.2rem;
+  color: #fff;
+  align-self: flex-start;
+  opacity: 0.4;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+.event-description {
+  padding: 1.6rem 3.2rem;
+  font-size: 2rem;
+}

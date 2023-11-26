@@ -1,0 +1,52 @@
+.main-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #868e96;
+
+  font-size: 62.5%;
+  font-family: "Playpen Sans", cursive;
+  color: #333;
+}
+.container {
+  width: 110rem;
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  background-color: #212529;
+  color: #fff;
+  padding: 4.8rem;
+  border-radius: 3rem;
+}
+.sub-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+img {
+  border-radius: 3rem;
+}
+h1 {
+  font-size: 6.4rem;
+  font-weight: 800;
+}
+h2 {
+  font-size: 4.8rem;
+  font-weight: 500;
+}
+h3 {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.back-button {
+  margin-top: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+  padding: 1.2rem 2.4rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
