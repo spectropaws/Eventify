@@ -74,6 +74,14 @@ function Navigation(props) {
                 Previous Events
               </a>
             </li>
+            <li className={styles["list-item"]}>
+              <a
+                href="#previous-events"
+                className={`${styles.btn} ${styles["btn-profile-nav"]}`}
+              >
+                Search Events
+              </a>
+            </li>
           </ul>
         </div>
         <div className={styles.logout} onClick={handleLogout}>

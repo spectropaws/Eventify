@@ -71,7 +71,7 @@ html {
 .name {
   font-size: 3rem;
   font-weight: 800;
-  padding: 2rem 0 3.2rem 0;
+  padding: 2rem 0 2.4rem 0;
 }
 
 .profile-img {
@@ -115,7 +115,7 @@ html {
 }
 
 .profile-nav {
-  padding: 2rem 0;
+  padding: 0.8rem 0;
   width: 100%;
 }
 
@@ -165,7 +165,7 @@ html {
 
 .logout {
   width: 100%;
-  margin: auto auto 3rem;
+  margin: 1rem auto 1rem;
   text-align: center;
 }
 
@@ -479,7 +479,7 @@ html {
   padding-left: 1.6rem;
 }
 
-.reg-card {
+.reg-rev-card {
   display: flex;
   flex-direction: column;
   padding: 2.4rem;
@@ -488,8 +488,8 @@ html {
   background-color: #fff;
 }
 
-.btn-reg:link,
-.btn-reg:visited {
+.btn-reg-rev:link,
+.btn-reg-rev:visited {
   font-size: 1.8rem;
   text-transform: uppercase;
   padding: 1.2rem 2.4rem;
@@ -503,8 +503,8 @@ html {
   transition: all 0.3s ease;
 }
 
-.btn-reg:hover,
-.btn-reg:active {
+.btn-reg-rev:hover,
+.btn-reg-rev:active {
   background-color: #fff;
   color: green;
 }

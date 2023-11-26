@@ -35,13 +35,13 @@ function EventDetails(props) {
           </p>
         </div>
         <div className={styles["event-registration"]}>
-          <div className={styles["reg-card"]}>
+          <div className={styles["reg-rev-card"]}>
             <h3 className={styles["quaternary-heading"]}>
               Arduino Workshop (Hands on Session)
             </h3>
             <a
               href="#registrations"
-              className={`${styles.btn} ${styles["btn-reg"]}`}
+              className={`${styles.btn} ${styles["btn-reg-rev"]}`}
             >
               View Registrations
             </a>
