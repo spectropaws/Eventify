@@ -186,29 +186,11 @@ function EventManager(props) {
                   <i className="fa-solid fa-registered"></i>
                   <span>Registrations done: 155</span>
                 </div>
-              </div>
-              <a
-                href="#"
-                className={`${styles.btn} ${styles["know-more-btn"]}`}
-              >
-                Know More
-              </a>
-            </div>
-          </div>
-          <div className={styles["card"]}>
-            <div className={styles["card-img"]} role="img"></div>
-            <div className={styles["card-info"]}>
-              <h3 className={styles["quaternary-heading"]}>
-                Python Workshop: Create your own App
-              </h3>
-              <div className={styles["info-field-container"]}>
-                <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
-                  <i className="fa-solid fa-calendar"></i>
-                  <span>Event Date: 10/11/2023</span>
-                </div>
-                <div className={`${styles["info-field"]} ${styles["if-reg"]}`}>
-                  <i className="fa-solid fa-registered"></i>
-                  <span>Registrations done: 155</span>
+                <div
+                  className={`${styles["info-field"]} ${styles["if-rating"]}`}
+                >
+                  <i class="fa-solid fa-star"></i>
+                  <span>Rating: 4.7</span>
                 </div>
               </div>
               <a
@@ -234,6 +216,12 @@ function EventManager(props) {
                   <i className="fa-solid fa-registered"></i>
                   <span>Registrations done: 155</span>
                 </div>
+                <div
+                  className={`${styles["info-field"]} ${styles["if-rating"]}`}
+                >
+                  <i class="fa-solid fa-star"></i>
+                  <span>Rating: 4.7</span>
+                </div>
               </div>
               <a
                 href="#"
@@ -257,6 +245,42 @@ function EventManager(props) {
                 <div className={`${styles["info-field"]} ${styles["if-reg"]}`}>
                   <i className="fa-solid fa-registered"></i>
                   <span>Registrations done: 155</span>
+                </div>
+                <div
+                  className={`${styles["info-field"]} ${styles["if-rating"]}`}
+                >
+                  <i class="fa-solid fa-star"></i>
+                  <span>Rating: 4.7</span>
+                </div>
+              </div>
+              <a
+                href="#"
+                className={`${styles.btn} ${styles["know-more-btn"]}`}
+              >
+                Know More
+              </a>
+            </div>
+          </div>
+          <div className={styles["card"]}>
+            <div className={styles["card-img"]} role="img"></div>
+            <div className={styles["card-info"]}>
+              <h3 className={styles["quaternary-heading"]}>
+                Python Workshop: Create your own App
+              </h3>
+              <div className={styles["info-field-container"]}>
+                <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
+                  <i className="fa-solid fa-calendar"></i>
+                  <span>Event Date: 10/11/2023</span>
+                </div>
+                <div className={`${styles["info-field"]} ${styles["if-reg"]}`}>
+                  <i className="fa-solid fa-registered"></i>
+                  <span>Registrations done: 155</span>
+                </div>
+                <div
+                  className={`${styles["info-field"]} ${styles["if-rating"]}`}
+                >
+                  <i class="fa-solid fa-star"></i>
+                  <span>Rating: 4.7</span>
                 </div>
               </div>
               <a

@@ -33,7 +33,10 @@ function Navigation(props) {
       >
         <span className={styles.name}>Eventify</span>
         <div className={`${styles.profile} ${styles["flex-container"]}`}>
-          <div role="img" className={styles["profile-img"]}></div>
+          <div
+            role="img"
+            className={`${styles["profile-img"]} ${styles["profile-img1"]}`}
+          ></div>
           <div
             className={`${styles["profile-text"]} ${styles["flex-container"]}`}
           >
