@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import styles from "./../dashboard.module.css";
 
@@ -44,12 +45,61 @@ function PreviousEventDetails(props) {
               </div>
             </div>
             <a
-              href="#registrations"
+              href="#review-box"
               className={`${styles.btn} ${styles["btn-rev"]}`}
             >
               Add a Review
             </a>
           </div>
+        </div>
+      </section>
+
+      <section id="review-box" className={styles["add-a-review-section"]}>
+        <div className={styles["form-container"]}>
+          <form>
+            <div className={styles["review-box-header"]}>
+              <div className={styles["review-box-text"]}>
+                <h2 className={styles["secondary-heading"]}>Write a Review</h2>
+                <div className={styles["star-ratings-container"]}>
+                  <div className={styles["rate-head"]}>
+                    <span className={styles["rating"]}>Add Rating: </span>
+                  </div>
+                  <div className={styles["stars-container"]}>
+                    <i
+                      className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                    ></i>
+                    <i
+                      className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                    ></i>
+                    <i
+                      className={`fa-solid fa-star ${styles.star} ${styles["active-star"]}`}
+                    ></i>
+                    <i
+                      className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                    ></i>
+                    <i
+                      className={`fa-solid fa-star ${styles.star} ${styles["inactive-star"]}`}
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div className={styles["review-box-btn"]}>
+                <a
+                  href="#"
+                  className={`${styles.btn} ${styles["btn-rev"]} ${styles["btn-rev-cancel"]}`}
+                >
+                  Cancel
+                </a>
+                <a
+                  href="#"
+                  className={`${styles.btn} ${styles["btn-rev"]} ${styles["btn-rev-post"]}`}
+                >
+                  Post
+                </a>
+              </div>
+            </div>
+            <textarea placeholder="Write your review here" />
+          </form>
         </div>
       </section>
     </>
