@@ -18,7 +18,7 @@ function EventManager(props) {
     else if (props.page === "prevEvent")
       current = <PreviousEventDetails page={props.setPage} user={props.user} />;
     else if (props.page === "editProfile")
-      current = <EditProfile user={props.user} />;
+      current = <EditProfile user={props.user} page={props.setPage} />;
     else
       current = (
         <>
