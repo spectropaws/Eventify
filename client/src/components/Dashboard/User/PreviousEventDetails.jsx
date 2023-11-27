@@ -98,7 +98,10 @@ function PreviousEventDetails(props) {
                 </a>
               </div>
             </div>
-            <textarea placeholder="Write your review here" />
+            <textarea
+              className={styles["rev-textarea"]}
+              placeholder="Write your review here"
+            />
           </form>
         </div>
       </section>

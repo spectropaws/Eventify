@@ -683,7 +683,7 @@ tbody tr:nth-child(even) {
   color: #333;
 }
 
-textarea {
+.rev-textarea {
   margin: 1.2rem 0;
   width: 100%;
   background: #eee;
@@ -698,3 +698,48 @@ textarea {
 }
 
 /* =========== PROFILE EDIT PAGE ============== */
+.change-backcover {
+  margin-bottom: 0.8rem;
+}
+
+.bgcover-field {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.change-backcover label {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1.2rem 2.4rem;
+  border-radius: 3rem;
+  background-color: #212529;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.change-backcover label:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.edit-profile-section {
+  padding: 3.2rem;
+}
+
+.form-elements {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  row-gap: 1.2rem;
+  column-gap: 1.2rem;
+  align-items: center;
+}
+
+.edit-profile-label {
+  font-size: 1.6rem;
+}
