@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import styles from "./../dashboard.module.css";
 import UserProfile from "./../UserProfile";
@@ -34,7 +35,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i className="fa-solid fa-ticket"></i>
+                  <i class="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -68,7 +69,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i className="fa-solid fa-ticket"></i>
+                  <i class="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -101,7 +102,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i className="fa-solid fa-ticket"></i>
+                  <i class="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -134,7 +135,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i className="fa-solid fa-ticket"></i>
+                  <i class="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div

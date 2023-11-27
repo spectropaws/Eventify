@@ -194,7 +194,7 @@ html {
   /* display: grid; */
   /* grid-template-columns: 1fr 0.3fr; */
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: #f1f3f5;
   border-radius: 3rem;
 }
 
@@ -399,12 +399,13 @@ html {
   color: orange;
 }
 
+.if-reg-status,
+.if-fees-paid,
 .if-tickets,
 .if-trans-status {
   color: green;
 }
 
-.if-reg-status,
 .if-reg {
   color: red;
 }
@@ -486,6 +487,7 @@ html {
   padding-left: 1.6rem;
 }
 
+.reg-event-card,
 .reg-rev-card,
 .add-rev-card {
   display: flex;
@@ -608,7 +610,8 @@ tbody tr:nth-child(even) {
 /* ======== NORMAL USER DASHBOARD ====== */
 
 /* ====== NORMAL USER PREVIOUS EVENTS REVIEW PAGE ===== */
-.event-review {
+.event-review,
+.registered-event {
   padding: 3.2rem;
   padding-left: 1.6rem;
 }
