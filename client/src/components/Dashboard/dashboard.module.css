@@ -209,8 +209,8 @@ html {
   height: 35vh;
   /* grid-column: 1 / -1; */
   color: #fff;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("./../../../public/www.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)),
+    url("./../../../public/bgcover3.jpg");
   background-position: center;
   background-size: cover;
   display: flex;
@@ -367,7 +367,7 @@ html {
 
 .card-img {
   height: 20rem;
-  background: url("./../../../public/www.jpg");
+  background: url("./../../../public/bgcover3.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -458,14 +458,14 @@ html {
 .btn-close:visited {
   font-size: 3.2rem;
   color: #000;
-  opacity: 0.4;
+  opacity: 0.6;
   position: fixed;
   top: 1.6rem;
   right: 6.4rem;
 }
 
 .btn-close:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 /* ============================================== */
@@ -482,10 +482,13 @@ html {
   font-weight: 500;
 }
 
-.event-registration,
-.event-rev-section {
+.event-registration {
   padding: 3.2rem;
   padding-left: 1.6rem;
+}
+
+.event-rev-section {
+  padding: 3.2rem;
 }
 
 .reg-event-card,
@@ -716,7 +719,7 @@ tbody tr:nth-child(even) {
   padding: 1.2rem 2.4rem;
   border-radius: 3rem;
   background-color: #212529;
-  opacity: 0.4;
+  opacity: 0.6;
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -724,7 +727,7 @@ tbody tr:nth-child(even) {
 }
 
 .change-backcover label:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   cursor: pointer;
 }
 
