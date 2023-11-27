@@ -733,14 +733,96 @@ tbody tr:nth-child(even) {
 }
 
 .form-elements {
-  width: 50%;
+  padding: 2rem 0;
   display: grid;
-  grid-template-columns: 0.2fr 1fr;
-  row-gap: 1.2rem;
-  column-gap: 1.2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
   align-items: center;
 }
 
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.bio-input {
+  grid-column: 1/-1;
+}
+
 .edit-profile-label {
-  font-size: 1.6rem;
+  font-size: 2rem;
+}
+
+.edit-profile-label2 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.form-input-container input,
+.form-input-container select,
+.form-input-container textarea {
+  background-color: #eee;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  border-radius: 1rem;
+  font-family: inherit;
+}
+
+.form-input-container textarea {
+  height: 10rem;
+  resize: none;
+}
+
+.formbtns {
+  margin: 2.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.btn-cancel:link,
+.btn-cancel:visited {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  padding: 1.2rem 2.4rem;
+  border: 4px solid #212529;
+  background-color: #212529;
+  color: #fff;
+  text-align: center;
+  border-radius: 1rem;
+  /* margin: 0.8rem 1.2rem; */
+  box-shadow: 0 0.1rem 0.2rem #777;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel:hover,
+.btn-cancel:active {
+  background-color: #fff;
+  color: #333;
+}
+
+.btn-save:link,
+.btn-save:visited {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  padding: 1.2rem 2.4rem;
+  border: 4px solid green;
+  background-color: green;
+  color: #fff;
+  text-align: center;
+  border-radius: 1rem;
+  /* margin: 0.8rem 1.2rem; */
+  box-shadow: 0 0.1rem 0.2rem #777;
+  transition: all 0.3s ease;
+}
+
+.btn-save:hover,
+.btn-save:active {
+  background-color: #fff;
+  color: green;
 }
