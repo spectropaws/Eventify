@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Main from "./User/Main";
 import EventDetails from "./User/EventDetails";
 import PreviousEventDetails from "./User/PreviousEventDetails";

@@ -1,11 +1,58 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./dashboard.module.css";
 import axios from "axios";
 
 function Navigation(props) {
   const navigate = useNavigate();
+
+  function waitForElm(selector) {
+    return new Promise((resolve) => {
+      if (document.querySelector(selector)) {
+        return resolve(document.querySelector(selector));
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        if (document.querySelector(selector)) {
+          observer.disconnect();
+          resolve(document.querySelector(selector));
+        }
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    });
+  }
+
+  useEffect(() => {
+    const allLinks = document.querySelectorAll("a:link");
+
+    if (props.page === "main") {
+      allLinks.forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const href = link.getAttribute("href");
+
+          if (href === "#")
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+
+          if (href !== "#" && href.startsWith("#")) {
+            const temp = async () => {
+              const sectionEl = await waitForElm(href);
+              sectionEl.scrollIntoView({ behavior: "smooth" });
+            };
+            temp();
+          }
+        });
+      });
+    }
+  });
 
   const request = axios.create({
     withCredentials: true,
@@ -24,6 +71,13 @@ function Navigation(props) {
       })
       .catch(() => navigate("/network-error"));
     navigate("/");
+  }
+
+  function openEditProfile() {
+    if (props.page !== "editProfile") props.setPage("editProfile");
+  }
+  function openMain() {
+    if (props.page !== "main") props.setPage("main");
   }
 
   return (
@@ -53,6 +107,7 @@ function Navigation(props) {
               <a
                 href="#profile"
                 className={`${styles.btn} ${styles["btn-profile-nav"]}`}
+                onClick={openEditProfile}
               >
                 Edit Profile
               </a>
@@ -62,6 +117,7 @@ function Navigation(props) {
               <a
                 href="#upcoming-events"
                 className={`${styles.btn} ${styles["btn-profile-nav"]}`}
+                onClick={openMain}
               >
                 {props.user.role ? "Add Event" : "Upcoming Events"}
               </a>
@@ -70,6 +126,7 @@ function Navigation(props) {
               <a
                 href="#previous-events"
                 className={`${styles.btn} ${styles["btn-profile-nav"]}`}
+                onClick={openMain}
               >
                 Previous Events
               </a>
