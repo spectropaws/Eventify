@@ -1,11 +1,18 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import styles from "./dashboard.module.css";
 
 function UserProfile(props) {
+  function openEditProfile() {
+    props.page("editProfile");
+  }
+
   return (
     <>
       <section id="profile" className={styles["back-cover"]}>
-        <h1 className={styles["primary-heading"]}>Hello, Robert!</h1>
+        <h1 className={styles["primary-heading"]}>
+          Hello, {props.user.name.split(" ")[0]}
+        </h1>
       </section>
 
       <section className={styles["profile-section"]}>
@@ -50,6 +57,7 @@ function UserProfile(props) {
           <a
             href="#"
             className={`${styles.btn} ${styles["edit-btn"]} ${styles["edit-btn1"]}`}
+            onClick={openEditProfile}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </a>
@@ -64,29 +72,55 @@ function UserProfile(props) {
             <div className={styles["social-links-container"]}>
               <div className={styles["social-link"]}>
                 <i className="fa-solid fa-phone"></i>
-                <span>Phone: 1169-1376-2388</span>
+                <span>
+                  Phone:{" "}
+                  {props.user.social.phone
+                    ? props.user.social.phone
+                    : "Not set"}
+                </span>
               </div>
               <div className={styles["social-link"]}>
                 <i className="fa-brands fa-facebook"></i>
-                <span>Facebook: Robert Jr</span>
+                <span>
+                  Facebook:{" "}
+                  {props.user.social.facebook
+                    ? props.user.social.facebook
+                    : "Not set"}
+                </span>
               </div>
               <div className={styles["social-link"]}>
                 <i className="fa-brands fa-instagram"></i>
-                <span>Instagram: robertjr@001</span>
+                <span>
+                  Instagram:{" "}
+                  {props.user.social.instagram
+                    ? props.user.social.instagram
+                    : "Not set"}
+                </span>
               </div>
               <div className={styles["social-link"]}>
                 <i className="fa-brands fa-linkedin"></i>
-                <span>Linkedin: Robert Jr</span>
+                <span>
+                  Linkedin:{" "}
+                  {props.user.social.linkedin
+                    ? props.user.social.linkedin
+                    : "Not set"}
+                </span>
               </div>
               <div className={styles["social-link"]}>
                 <i className="fa-brands fa-twitter"></i>
-                <span>Twitter: @robert001</span>
+                <span>
+                  Twitter:{" "}
+                  {props.user.social.twitter
+                    ? props.user.social.twitter
+                    : "Not set"}
+                </span>
               </div>
             </div>
           </div>
           <a
             href="#"
             className={`${styles.btn} ${styles["edit-btn"]} ${styles["edit-btn2"]}`}
+            onClick={openEditProfile}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </a>

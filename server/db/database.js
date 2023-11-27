@@ -54,7 +54,7 @@ async function getPasswordHashAndSalt(username) {
 
 async function fetchUserDetails(username) {
   const query =
-    "select id, name, username, email, role, age, gender, designation, organization, profilePhoto from users where username = $1";
+    "select id, name, username, email, role, age, gender, designation, organization, profilePhoto, social from users where username = $1";
   const values = [username];
 
   const res = await runQuery(query, values);

@@ -18,9 +18,9 @@ function Dashboard() {
       if (!token) navigate("/");
       request
         .post("/signin", { token: token })
-        .then((respone) => {
-          if (respone.data) {
-            setUser({ ...respone.data, loggedIn: true });
+        .then((response) => {
+          if (response.data) {
+            setUser({ ...response.data, loggedIn: true });
           } else {
             localStorage.removeItem("token");
             setUser({ loggedIn: false });
@@ -31,11 +31,7 @@ function Dashboard() {
     }
   }, [request, token, navigate, user]);
 
-  return (
-    <>
-      <Userspace token={token} user={user} />
-    </>
-  );
+  return <>{user.loggedIn && <Userspace token={token} user={user} />}</>;
 }
 
 export default Dashboard;
