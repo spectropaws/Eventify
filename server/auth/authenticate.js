@@ -15,7 +15,7 @@ async function signin(User) {
 
 async function signup(User) {
   if (await database.userExists(User.username)) return null;
-  User.role = "user" ? false : true;
+  User.role = User.role === "user" ? false : true;
 
   try {
     const salt = await bcrypt.genSalt(saltRounds);

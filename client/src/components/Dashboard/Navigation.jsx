@@ -75,7 +75,7 @@ function Navigation(props) {
               </a>
             </li>
 
-            {props.user.role && (
+            {!props.user.role && (
               <li className={styles["list-item"]}>
                 <a
                   href="#previous-events"

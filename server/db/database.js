@@ -1,4 +1,6 @@
-const { Pool, Client } = require("pg");
+const { Pool } = require("pg");
+require("dotenv").config();
+
 const credentials = {
   user: process.env.DB_USERNAME,
   host: process.env.DB_HOST,
@@ -25,7 +27,7 @@ async function userExists(username) {
 
 function register(User) {
   const query =
-    "insert into users(name, username, email, passwordHash, salt, role) values ($1, $2, $3, $4, $5, $6)";
+    "insert into users(name, username, email, passwordHash, salt, role, social) values ($1, $2, $3, $4, $5, $6, $7)";
   const values = [
     User.name,
     User.username,
@@ -33,6 +35,7 @@ function register(User) {
     User.passwordHash,
     User.salt,
     User.role,
+    User.social,
   ];
   try {
     runQuery(query, values);

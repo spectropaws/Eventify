@@ -51,6 +51,13 @@ app.post("/signup", jsonParser, async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     role: req.body.role,
+    social: {
+      phone: null,
+      facebook: "",
+      instagram: "",
+      linkedin: "",
+      twitter: "",
+    },
   };
 
   if (await auth.signup(User)) {
