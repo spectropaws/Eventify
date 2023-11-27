@@ -4,24 +4,22 @@ import EventDetails from "./User/EventDetails";
 import PreviousEventDetails from "./User/PreviousEventDetails";
 
 function User(props) {
-  const [page, setPage] = useState("main");
-
-  if (page === "main") {
+  if (props.page === "main") {
     return (
       <>
-        <Main page={setPage} user={props.user} />
+        <Main page={props.setPage} user={props.user} />
       </>
     );
-  } else if (page === "event") {
+  } else if (props.page === "event") {
     return (
       <>
-        <EventDetails page={setPage} user={props.user} />
+        <EventDetails page={props.setPage} user={props.user} />
       </>
     );
-  } else if (page === "prevEvent") {
+  } else if (props.page === "prevEvent") {
     return (
       <>
-        <PreviousEventDetails page={setPage} user={props.user} />
+        <PreviousEventDetails page={props.setPage} user={props.user} />
       </>
     );
   }

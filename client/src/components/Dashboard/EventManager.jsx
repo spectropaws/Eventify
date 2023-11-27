@@ -7,25 +7,23 @@ import PreviousEventDetails from "./EventManager/PreviousEventDetails";
 import EditProfile from "./EditProfile";
 
 function EventManager(props) {
-  const [page, setPage] = useState("main");
-
   let upcomingEvents = [],
     previousEvents = [];
 
   function switchBoards() {
     var current;
 
-    if (page === "event")
-      current = <EventDetails page={setPage} user={props.user} />;
-    else if (page === "prevEvent")
-      current = <PreviousEventDetails page={setPage} user={props.user} />;
-    else if (page === "editProfile")
+    if (props.page === "event")
+      current = <EventDetails page={props.setPage} user={props.user} />;
+    else if (props.page === "prevEvent")
+      current = <PreviousEventDetails page={props.setPage} user={props.user} />;
+    else if (props.page === "editProfile")
       current = <EditProfile user={props.user} />;
     else
       current = (
         <>
-          <UserProfile user={props.user} page={setPage} />
-          <Main page={setPage} />
+          <UserProfile user={props.user} page={props.setPage} />
+          <Main page={props.setPage} />
         </>
       );
 
