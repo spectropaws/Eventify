@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./dashboard.module.css";
 import axios from "axios";
 
@@ -10,6 +10,11 @@ const request = axios.create({
 });
 
 function EditProfile(props) {
+  const topElem = useRef(null);
+  useEffect(() => {
+    topElem.current?.scrollIntoView({ behavior: "smooth" });
+  });
+
   const [newProfile, setNewProfile] = useState({
     username: props.user.username,
     name: props.user.name,
@@ -81,6 +86,7 @@ function EditProfile(props) {
   return (
     <>
       <section
+        ref={topElem}
         className={styles["back-cover"]}
         style={
           props.user.backgroundimage

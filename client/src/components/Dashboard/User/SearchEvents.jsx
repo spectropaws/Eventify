@@ -1,15 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./../dashboard.module.css";
 
 function SearchEvents(props) {
+  const topElem = useRef(null);
+  useEffect(() => {
+    topElem.current?.scrollIntoView({ behavior: "smooth" });
+  });
+
   function handleCloseEvents() {
     props.page("main");
   }
 
   return (
     <>
-      <section className={styles["back-cover"]}>
+      <section className={styles["back-cover"]} ref={topElem}>
         <a
           href="#"
           className={`${styles.btn} ${styles["btn-close"]}`}
