@@ -31,7 +31,13 @@ function Dashboard() {
     }
   }, [request, token, navigate, user]);
 
-  return <>{user.loggedIn && <Userspace token={token} user={user} />}</>;
+  return (
+    <>
+      {user.loggedIn && (
+        <Userspace token={token} user={user} setUser={setUser} />
+      )}
+    </>
+  );
 }
 
 export default Dashboard;

@@ -2,22 +2,66 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import styles from "./dashboard.module.css";
+import axios from "axios";
+
+const request = axios.create({
+  withCredentials: true,
+  baseURL: process.env.REACT_APP_API_SERVER,
+});
 
 function EditProfile(props) {
   function handleCloseEvent() {
     props.page("main");
   }
 
+  function uploadBackground(event) {
+    const formdata = new FormData();
+    formdata.append("username", props.user.username);
+    formdata.append("file", event.target.files[0]);
+
+    request
+      .post("/edit-profile/background", formdata, {
+        "content-type": "multipart/form-data",
+      })
+      .then((result) => {
+        console.log(props.user);
+        props.setUser((prevValue) => ({
+          ...prevValue,
+          backgroundimage: result,
+        }));
+      })
+      .catch((err) => console.log(err));
+  }
+
+  const imageUrl =
+    process.env.REACT_APP_API_SERVER +
+    "/images/background/" +
+    props.user.backgroundimage;
+
   return (
     <>
-      <section className={styles["back-cover"]}>
+      <section
+        className={styles["back-cover"]}
+        style={
+          props.user.backgroundimage
+            ? {
+                background:
+                  "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" +
+                  imageUrl +
+                  "')",
+              }
+            : {}
+        }
+      >
         <h1 className={styles["primary-heading"]}></h1>
         <div className={styles["change-backcover"]}>
           <input
             type="file"
             id="file"
+            name="file"
             accept="image/png, image/jpeg, image/jpg"
             className={styles["bgcover-field"]}
+            onChange={uploadBackground}
           />
           <label for="file">
             <i class="fa-solid fa-camera"></i>

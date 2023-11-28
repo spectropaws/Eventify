@@ -7,16 +7,16 @@ import PreviousEventDetails from "./PreviousEventDetails";
 
 function Main(props) {
   function openEventDetails() {
-    props.page("event");
+    props.setPage("event");
   }
 
   function openPreviousEventDetails() {
-    props.page("prevEvent");
+    props.setPage("prevEvent");
   }
 
   return (
     <>
-      <UserProfile user={props.user} />
+      <UserProfile user={props.user} page={props.setPage} />
 
       <section className={styles["upcoming-events-section"]}>
         <h2 className={styles["secondary-heading"]}>Registered Events</h2>

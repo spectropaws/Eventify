@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./dashboard.module.css";
 import EventManager from "./EventManager";
 import User from "./User";
@@ -20,9 +20,19 @@ function Userspace(props) {
           />
           <div className={styles["user-space"]}>
             {props.user.role ? (
-              <EventManager user={props.user} page={page} setPage={setPage} />
+              <EventManager
+                user={props.user}
+                page={page}
+                setPage={setPage}
+                setUser={props.setUser}
+              />
             ) : (
-              <User user={props.user} page={page} setPage={setPage} />
+              <User
+                user={props.user}
+                page={page}
+                setPage={setPage}
+                setUser={props.setUser}
+              />
             )}
           </div>
         </div>

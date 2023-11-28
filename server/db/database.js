@@ -18,6 +18,7 @@ const runQuery = async (query, values) => {
   return res;
 };
 
+// ====== Authentication ==============
 async function userExists(username) {
   const query = "select id from users where username = $1";
   const values = [username];
@@ -53,15 +54,32 @@ async function getPasswordHashAndSalt(username) {
 }
 
 async function fetchUserDetails(username) {
-  const query =
-    "select id, name, username, email, role, age, gender, designation, organization, profilePhoto, social from users where username = $1";
+  const query = "select * from users where username = $1";
   const values = [username];
 
   const res = await runQuery(query, values);
+  delete res.passwordhash;
+  delete res.salt;
   return res.rows[0];
+}
+// ====================================
+
+// ====== Edit Profile ==============
+
+async function updateBackground(background, username) {
+  const query = "update users set backgroundimage=$1 where username=$2";
+  const values = [background, username];
+
+  try {
+    await runQuery(query, values);
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 exports.userExists = userExists;
 exports.register = register;
 exports.getPasswordHashAndSalt = getPasswordHashAndSalt;
 exports.fetchUserDetails = fetchUserDetails;
+exports.updateBackground = updateBackground;

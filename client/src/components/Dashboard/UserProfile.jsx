@@ -7,9 +7,27 @@ function UserProfile(props) {
     props.page("editProfile");
   }
 
+  const imageUrl =
+    process.env.REACT_APP_API_SERVER +
+    "/images/background/" +
+    props.user.backgroundimage;
+
   return (
     <>
-      <section id="profile" className={styles["back-cover"]}>
+      <section
+        id="profile"
+        className={styles["back-cover"]}
+        style={
+          props.user.backgroundimage
+            ? {
+                background:
+                  "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" +
+                  imageUrl +
+                  "')",
+              }
+            : {}
+        }
+      >
         <h1 className={styles["primary-heading"]}>
           Hello, {props.user.name.split(" ")[0]}
         </h1>

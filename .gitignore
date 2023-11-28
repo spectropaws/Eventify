@@ -4,3 +4,4 @@ client/.env
 server/.env
 client/public/robots.txt
 queries
+server/public/images

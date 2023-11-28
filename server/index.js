@@ -4,8 +4,33 @@ const cors = require("cors");
 const randomstring = require("randomstring");
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `public/images/${req.params.type}`);
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      req.params.type +
+        "_" +
+        req.body.username +
+        "_" +
+        Date.now() +
+        path.extname(file.originalname)
+    );
+  },
+});
+let upload = multer({ storage: storage });
+
 const jsonParser = bodyParser.json();
 const auth = require("./auth/authenticate");
+const editor = require("./edit-profile");
+const { fetchUserDetails } = require("./db/database");
 require("dotenv").config();
 
 const app = express();
@@ -96,6 +121,26 @@ app.post("/logout", jsonParser, function (req, res) {
   delete currentSessions[req.body.token];
   res.send(null);
 });
+
+// edit profile
+app.post(
+  "/edit-profile/:type",
+  upload.single("file"),
+  async function (req, res) {
+    const user = await auth.getUserData(req.body.username);
+    const filename = user.backgroundimage;
+
+    !(await editor.backgroundImage(req.body.username, req.file.filename)) &&
+      console.log("Error uploading image path");
+
+    fs.unlink("public/images/" + req.params.type + "/" + filename, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+    res.send(filename);
+  }
+);
 
 app.post("/create", jsonParser, (req, res) => {
   const name = req.body.name;
