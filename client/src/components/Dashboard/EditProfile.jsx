@@ -11,9 +11,14 @@ const request = axios.create({
 
 function EditProfile(props) {
   const topElem = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
-    topElem.current?.scrollIntoView({ behavior: "smooth" });
-  });
+    if (!scrolled) {
+      topElem.current?.scrollIntoView({ behavior: "smooth" });
+      setScrolled(true);
+    }
+  }, [scrolled]);
 
   const [newProfile, setNewProfile] = useState({
     username: props.user.username,
@@ -74,7 +79,7 @@ function EditProfile(props) {
   function updateProfile() {
     request
       .post("/edit-profile", newProfile)
-      .then(() => handleCloseEvent())
+      .then(() => window.location.reload())
       .catch((err) => console.log(err));
   }
 

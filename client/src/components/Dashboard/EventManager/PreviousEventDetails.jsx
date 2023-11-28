@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./../dashboard.module.css";
 
 function PreviousEventDetails(props) {
   const topElem = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
-    topElem.current?.scrollIntoView({ behavior: "smooth" });
-  });
+    if (!scrolled) {
+      topElem.current?.scrollIntoView({ behavior: "smooth" });
+      setScrolled(true);
+    }
+  }, [scrolled]);
   function handleCloseEvent() {
     props.page("main");
   }
