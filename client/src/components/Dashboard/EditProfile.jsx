@@ -60,12 +60,8 @@ function EditProfile(props) {
       .post("/edit-profile/background", formdata, {
         "content-type": "multipart/form-data",
       })
-      .then((result) => {
-        console.log(props.user);
-        props.setUser((prevValue) => ({
-          ...prevValue,
-          backgroundimage: result,
-        }));
+      .then(() => {
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   }

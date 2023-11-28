@@ -30,28 +30,28 @@ function Navigation(props) {
   useEffect(() => {
     const allLinks = document.querySelectorAll("a:link");
 
-    if (props.page === "main") {
-      allLinks.forEach(function (link) {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          const href = link.getAttribute("href");
+    //if (props.page === "main") {
+    allLinks.forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const href = link.getAttribute("href");
 
-          if (href === "#")
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
+        if (href === "#")
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
 
-          if (href !== "#" && href.startsWith("#")) {
-            const temp = async () => {
-              const sectionEl = await waitForElm(href);
-              sectionEl.scrollIntoView({ behavior: "smooth" });
-            };
-            temp();
-          }
-        });
+        if (href !== "#" && href.startsWith("#")) {
+          const temp = async () => {
+            const sectionEl = await waitForElm(href);
+            sectionEl.scrollIntoView({ behavior: "smooth" });
+          };
+          temp();
+        }
       });
-    }
+    });
+    //}
   });
 
   const request = axios.create({
@@ -144,7 +144,7 @@ function Navigation(props) {
             {!props.user.role && (
               <li className={styles["list-item"]}>
                 <a
-                  href="#previous-events"
+                  href="#profile"
                   className={`${styles.btn} ${styles["btn-profile-nav"]}`}
                   onClick={openSearchEvents}
                 >

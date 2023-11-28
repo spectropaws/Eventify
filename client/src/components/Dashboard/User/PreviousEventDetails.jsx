@@ -4,7 +4,7 @@ import styles from "./../dashboard.module.css";
 
 function PreviousEventDetails(props) {
   function closePreviousEventDetails() {
-    props.page("main");
+    props.setPage("main");
   }
   return (
     <>

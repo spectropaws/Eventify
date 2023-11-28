@@ -138,7 +138,7 @@ app.post(
         console.log(err);
       }
     });
-    res.send(filename);
+    res.send(null);
   }
 );
 

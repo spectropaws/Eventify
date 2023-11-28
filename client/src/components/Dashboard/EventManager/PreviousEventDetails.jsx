@@ -1,15 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./../dashboard.module.css";
 
 function PreviousEventDetails(props) {
+  const topElem = useRef(null);
+  useEffect(() => {
+    topElem.current?.scrollIntoView({ behavior: "smooth" });
+  });
   function handleCloseEvent() {
     props.page("main");
   }
 
   return (
     <>
-      <section className={styles["back-cover"]}>
+      <section className={styles["back-cover"]} ref={topElem}>
         <h1 className={styles["primary-heading"]}>
           Python Workshop: Create your own App
         </h1>

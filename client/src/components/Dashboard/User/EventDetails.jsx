@@ -4,7 +4,7 @@ import styles from "./../dashboard.module.css";
 
 function EventDetails(props) {
   function closeEventDetails() {
-    props.page("main");
+    props.setPage("main");
   }
 
   return (
