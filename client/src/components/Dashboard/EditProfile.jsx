@@ -125,6 +125,23 @@ function EditProfile(props) {
         <div className={styles["form-container"]}>
           <form>
             <h2 className={styles["secondary-heading"]}>Edit your profile</h2>
+            <div className={styles["change-profile-photo-container"]}>
+              <div className={styles["default-profile-img"]} role="img"></div>
+              <input
+                type="file"
+                id="profile-img"
+                name="file"
+                accept="image/png, image/jpeg, image/jpg"
+                className={styles["profile-img-field"]}
+              />
+              <label
+                htmlFor="profile-img"
+                className={styles["change-profile-img-btn"]}
+              >
+                <i className="fa-solid fa-camera"></i>
+              </label>
+            </div>
+
             <div className={styles["form-elements"]}>
               <div className={styles["form-input-container"]}>
                 <label
@@ -145,6 +162,22 @@ function EditProfile(props) {
               <div className={styles["form-input-container"]}>
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
+                  htmlFor="email"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="user@mail.com"
+                  name="email"
+                  value={newProfile.email}
+                  onChange={handleEditChange}
+                />
+              </div>
+              <div className={styles["form-input-container"]}>
+                <label
+                  className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
                   htmlFor="desgn"
                 >
                   Designation
@@ -158,6 +191,16 @@ function EditProfile(props) {
                   placeholder="Event Manager"
                 />
               </div>
+              <div className={styles["form-input-container"]}>
+                <label
+                  className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
+                  htmlFor="org"
+                >
+                  Organization
+                </label>
+                <input type="text" id="org" placeholder="Company Ltd/Inc" />
+              </div>
+
               <div
                 className={`${styles["form-input-container"]} ${styles["bio-input"]}`}
               >
@@ -174,22 +217,6 @@ function EditProfile(props) {
                   value={newProfile.bio}
                   onChange={handleEditChange}
                 ></textarea>
-              </div>
-              <div className={styles["form-input-container"]}>
-                <label
-                  className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  htmlFor="email"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="user@mail.com"
-                  name="email"
-                  value={newProfile.email}
-                  onChange={handleEditChange}
-                />
               </div>
               <div className={styles["form-input-container"]}>
                 <label

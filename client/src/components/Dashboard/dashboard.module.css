@@ -735,6 +735,56 @@ tbody tr:nth-child(even) {
   padding: 3.2rem;
 }
 
+.change-profile-photo-container {
+  display: grid;
+  align-items: center;
+  margin: 1.2rem 0;
+  position: relative;
+}
+
+.default-profile-img {
+  height: 17rem;
+  width: 17rem;
+  background: url(./../../../public/profiledefault.png);
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.profile-img-field {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.change-profile-photo-container label {
+  position: absolute;
+  /* bottom: -20%; */
+  left: 50%;
+  top: 50%;
+  /* transform: translateX(-50%); */
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  background-color: #777;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.change-profile-img-btn:hover {
+  opacity: 1;
+  /* backdrop-filter: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)); */
+}
+
+.change-profile-img-btn:hover .default-profile-img {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(./../../../public/profiledefault.png);
+}
+
 .form-elements {
   padding: 2rem 0;
   display: grid;
