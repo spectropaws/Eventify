@@ -78,8 +78,21 @@ async function updateBackground(background, username) {
   }
 }
 
+async function updateProfile(values) {
+  const query =
+    "update users set name=$1, designation=$2, description=$3, email=$4, gender=$5, age=$6, social=$7 where username=$8";
+
+  try {
+    await runQuery(query, values);
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 exports.userExists = userExists;
 exports.register = register;
 exports.getPasswordHashAndSalt = getPasswordHashAndSalt;
 exports.fetchUserDetails = fetchUserDetails;
 exports.updateBackground = updateBackground;
+exports.updateProfile = updateProfile;

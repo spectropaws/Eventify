@@ -12,6 +12,8 @@ function UserProfile(props) {
     "/images/background/" +
     props.user.backgroundimage;
 
+  //alert("Hello");
+
   return (
     <>
       <section
@@ -39,7 +41,9 @@ function UserProfile(props) {
             <h3 className={styles["tertiary-heading"]}>{props.user.name}</h3>
             <h4 className={styles["quaternary-heading"]}>
               {props.user.role
-                ? "Event Manager " +
+                ? (props.user.designation
+                    ? props.user.designation
+                    : "Event Manager ") +
                   (props.user.organization
                     ? "at " + props.user.organization
                     : "")
@@ -61,7 +65,12 @@ function UserProfile(props) {
                 <i className="fa-solid fa-person"></i>
                 {/* <i className="fa-solid fa-person-dress"></i> */}
                 <span>
-                  Gender: {props.user.gender ? props.user.gender : "Not set"}
+                  Gender:{" "}
+                  {props.user.gender === null
+                    ? "Not set"
+                    : props.user.gender
+                    ? "Male"
+                    : "Female"}
                 </span>
               </div>
               <div className={styles["user-field"]}>

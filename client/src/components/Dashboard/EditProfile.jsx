@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import styles from "./dashboard.module.css";
 import axios from "axios";
 
@@ -10,6 +10,43 @@ const request = axios.create({
 });
 
 function EditProfile(props) {
+  const [newProfile, setNewProfile] = useState({
+    username: props.user.username,
+    name: props.user.name,
+    designation: props.user.designation,
+    bio: props.user.description,
+    email: props.user.email,
+    gender: props.user.gender
+      ? "male"
+      : props.user.gender === null
+      ? ""
+      : "female",
+    age: props.user.age,
+    social: {
+      phone: props.user.social.phone,
+      facebook: props.user.social.facebook,
+      instagram: props.user.social.instagram,
+      linkedin: props.user.social.linkedin,
+      twitter: props.user.social.twitter,
+    },
+  });
+
+  function handleEditChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setNewProfile((prevValue) => ({ ...prevValue, [name]: value }));
+  }
+
+  function handleSocialEditChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    const prevSocial = newProfile.social;
+    const social = { ...prevSocial, [name]: value };
+
+    setNewProfile((prevValue) => ({ ...prevValue, social: social }));
+  }
+
   function handleCloseEvent() {
     props.page("main");
   }
@@ -30,6 +67,13 @@ function EditProfile(props) {
           backgroundimage: result,
         }));
       })
+      .catch((err) => console.log(err));
+  }
+
+  function updateProfile() {
+    request
+      .post("/edit-profile", newProfile)
+      .then(() => handleCloseEvent())
       .catch((err) => console.log(err));
   }
 
@@ -89,7 +133,14 @@ function EditProfile(props) {
                 >
                   Name
                 </label>
-                <input type="text" id="name" placeholder="Fullname" />
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={newProfile.name}
+                  onChange={handleEditChange}
+                  placeholder="Fullname"
+                />
               </div>
               <div className={styles["form-input-container"]}>
                 <label
@@ -98,7 +149,14 @@ function EditProfile(props) {
                 >
                   Designation
                 </label>
-                <input type="text" id="desgn" placeholder="Event Manager" />
+                <input
+                  type="text"
+                  id="desgn"
+                  name="designation"
+                  value={newProfile.designation}
+                  onChange={handleEditChange}
+                  placeholder="Event Manager"
+                />
               </div>
               <div
                 className={`${styles["form-input-container"]} ${styles["bio-input"]}`}
@@ -112,6 +170,9 @@ function EditProfile(props) {
                 <textarea
                   id="bio"
                   placeholder="Write something about yourself"
+                  name="bio"
+                  value={newProfile.bio}
+                  onChange={handleEditChange}
                 ></textarea>
               </div>
               <div className={styles["form-input-container"]}>
@@ -121,7 +182,14 @@ function EditProfile(props) {
                 >
                   Email Address
                 </label>
-                <input type="email" id="email" placeholder="user@mail.com" />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="user@mail.com"
+                  name="email"
+                  value={newProfile.email}
+                  onChange={handleEditChange}
+                />
               </div>
               <div className={styles["form-input-container"]}>
                 <label
@@ -130,11 +198,19 @@ function EditProfile(props) {
                 >
                   Gender
                 </label>
-                <select id="gender">
-                  <option>Select a option</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Prefer not to say</option>
+                <select
+                  id="gender"
+                  name="gender"
+                  value={newProfile.gender}
+                  onChange={handleEditChange}
+                >
+                  <option value="">Select an option</option>
+                  <option name="male" value="male">
+                    Male
+                  </option>
+                  <option name="female" value="female">
+                    Female
+                  </option>
                 </select>
               </div>
               <div className={styles["form-input-container"]}>
@@ -144,7 +220,13 @@ function EditProfile(props) {
                 >
                   Age
                 </label>
-                <input type="text" id="age" />
+                <input
+                  type="text"
+                  id="age"
+                  name="age"
+                  value={newProfile.age}
+                  onChange={handleEditChange}
+                />
               </div>
             </div>
             <h2 className={styles["secondary-heading"]}>
@@ -161,7 +243,14 @@ function EditProfile(props) {
                     Phone
                   </label>
                 </div>
-                <input type="text" id="phone" placeholder="0000-0000-00" />
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="0000-0000-00"
+                  name="phone"
+                  value={newProfile.social.phone}
+                  onChange={handleSocialEditChange}
+                />
               </div>
               <div className={styles["form-input-container"]}>
                 <div>
@@ -173,7 +262,14 @@ function EditProfile(props) {
                     Facebook
                   </label>
                 </div>
-                <input type="text" id="fb" placeholder="Facebook Username" />
+                <input
+                  type="text"
+                  id="fb"
+                  placeholder="Facebook Username"
+                  name="facebook"
+                  value={newProfile.social.facebook}
+                  onChange={handleSocialEditChange}
+                />
               </div>
               <div className={styles["form-input-container"]}>
                 <div>
@@ -189,6 +285,9 @@ function EditProfile(props) {
                   type="text"
                   id="insta"
                   placeholder="Instagram Username"
+                  name="instagram"
+                  value={newProfile.social.instagram}
+                  onChange={handleSocialEditChange}
                 />
               </div>
               <div className={styles["form-input-container"]}>
@@ -205,6 +304,9 @@ function EditProfile(props) {
                   type="text"
                   id="linkedin"
                   placeholder="Linkedin Username"
+                  name="linkedin"
+                  value={newProfile.social.linkedin}
+                  onChange={handleSocialEditChange}
                 />
               </div>
               <div className={styles["form-input-container"]}>
@@ -217,15 +319,30 @@ function EditProfile(props) {
                     Twitter
                   </label>
                 </div>
-                <input type="text" id="tweet" placeholder="Twitter Username" />
+                <input
+                  type="text"
+                  id="tweet"
+                  placeholder="Twitter Username"
+                  name="twitter"
+                  value={newProfile.social.twitter}
+                  onChange={handleSocialEditChange}
+                />
               </div>
             </div>
           </form>
           <div className={styles.formbtns}>
-            <a href="#" className={`${styles.btn} ${styles["btn-save"]}`}>
+            <a
+              href="#"
+              className={`${styles.btn} ${styles["btn-save"]}`}
+              onClick={updateProfile}
+            >
               Save
             </a>
-            <a href="#" className={`${styles.btn} ${styles["btn-cancel"]}`}>
+            <a
+              href="#"
+              className={`${styles.btn} ${styles["btn-cancel"]}`}
+              onClick={handleCloseEvent}
+            >
               Cancel
             </a>
           </div>

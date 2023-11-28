@@ -142,6 +142,13 @@ app.post(
   }
 );
 
+app.post("/edit-profile", jsonParser, async function (req, res) {
+  const username = req.body.username;
+  delete req.body.username;
+  await editor.updateProfile(username, req.body);
+  res.send(null);
+});
+
 app.post("/create", jsonParser, (req, res) => {
   const name = req.body.name;
 });
