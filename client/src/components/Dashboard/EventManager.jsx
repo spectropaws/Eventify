@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React from "react";
 import UserProfile from "./UserProfile";
 import Main from "./EventManager/Main";
 import EventDetails from "./EventManager/EventDetails";
 import PreviousEventDetails from "./EventManager/PreviousEventDetails";
 import EditProfile from "./EditProfile";
+import AddEvent from "./EventManager/AddEvent";
 
 function EventManager(props) {
   let upcomingEvents = [],
@@ -25,6 +26,8 @@ function EventManager(props) {
           setUser={props.setUser}
         />
       );
+    else if (props.page === "addEvent")
+      current = <AddEvent user={props.user} page={props.setPage} />;
     else
       current = (
         <>

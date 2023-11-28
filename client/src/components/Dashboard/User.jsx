@@ -3,6 +3,7 @@ import Main from "./User/Main";
 import EventDetails from "./User/EventDetails";
 import PreviousEventDetails from "./User/PreviousEventDetails";
 import EditProfile from "./EditProfile";
+import SearchEvents from "./User/SearchEvents";
 
 function User(props) {
   if (props.page === "main") {
@@ -39,6 +40,8 @@ function User(props) {
         setUser={props.setUser}
       />
     );
+  else if (props.page === "searchEvents")
+    return <SearchEvents page={props.setPage} />;
 }
 
 export default User;

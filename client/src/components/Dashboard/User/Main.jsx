@@ -2,8 +2,6 @@
 import React from "react";
 import styles from "./../dashboard.module.css";
 import UserProfile from "./../UserProfile";
-import EventDetails from "./EventDetails";
-import PreviousEventDetails from "./PreviousEventDetails";
 
 function Main(props) {
   function openEventDetails() {
@@ -18,7 +16,10 @@ function Main(props) {
     <>
       <UserProfile user={props.user} page={props.setPage} />
 
-      <section className={styles["upcoming-events-section"]}>
+      <section
+        className={styles["upcoming-events-section"]}
+        id="upcoming-events"
+      >
         <h2 className={styles["secondary-heading"]}>Registered Events</h2>
         <div className={styles["card-container"]}>
           <div className={styles.card}>
@@ -35,7 +36,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i class="fa-solid fa-money-bill"></i>
+                  <i className="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -69,7 +70,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i class="fa-solid fa-money-bill"></i>
+                  <i className="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -102,7 +103,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i class="fa-solid fa-money-bill"></i>
+                  <i className="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -135,7 +136,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-trans-status"]}`}
                 >
-                  <i class="fa-solid fa-money-bill"></i>
+                  <i className="fa-solid fa-money-bill"></i>
                   <span>Transaction successful!</span>
                 </div>
                 <div
@@ -156,7 +157,10 @@ function Main(props) {
         </div>
       </section>
 
-      <section className={styles["previous-events-section"]}>
+      <section
+        className={styles["previous-events-section"]}
+        id="previous-events"
+      >
         <h2 className={styles["secondary-heading"]}>
           Previous Attended Events
         </h2>
@@ -175,7 +179,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>
@@ -203,7 +207,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>
@@ -230,7 +234,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>
@@ -257,7 +261,7 @@ function Main(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-rating"]}`}
                 >
-                  <i class="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
                   <span>Rating: 4.7</span>
                 </div>
               </div>

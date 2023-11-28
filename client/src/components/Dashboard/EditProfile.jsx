@@ -63,8 +63,8 @@ function EditProfile(props) {
             className={styles["bgcover-field"]}
             onChange={uploadBackground}
           />
-          <label for="file">
-            <i class="fa-solid fa-camera"></i>
+          <label htmlFor="file">
+            <i className="fa-solid fa-camera"></i>
             Upload Backcover
           </label>
         </div>
@@ -73,7 +73,7 @@ function EditProfile(props) {
           className={`${styles.btn} ${styles["btn-close"]}`}
           onClick={handleCloseEvent}
         >
-          <i class="fa-solid fa-circle-xmark"></i>
+          <i className="fa-solid fa-circle-xmark"></i>
         </a>
       </section>
 
@@ -85,7 +85,7 @@ function EditProfile(props) {
               <div className={styles["form-input-container"]}>
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  for="name"
+                  htmlFor="name"
                 >
                   Name
                 </label>
@@ -94,7 +94,7 @@ function EditProfile(props) {
               <div className={styles["form-input-container"]}>
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  for="desgn"
+                  htmlFor="desgn"
                 >
                   Designation
                 </label>
@@ -105,7 +105,7 @@ function EditProfile(props) {
               >
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  for="bio"
+                  htmlFor="bio"
                 >
                   Bio
                 </label>
@@ -117,7 +117,7 @@ function EditProfile(props) {
               <div className={styles["form-input-container"]}>
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  for="email"
+                  htmlFor="email"
                 >
                   Email Address
                 </label>
@@ -126,7 +126,7 @@ function EditProfile(props) {
               <div className={styles["form-input-container"]}>
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  for="gender"
+                  htmlFor="gender"
                 >
                   Gender
                 </label>
@@ -140,7 +140,7 @@ function EditProfile(props) {
               <div className={styles["form-input-container"]}>
                 <label
                   className={`${styles["edit-profile-label"]} ${styles["edit-profile-label1"]}`}
-                  for="age"
+                  htmlFor="age"
                 >
                   Age
                 </label>
@@ -155,9 +155,9 @@ function EditProfile(props) {
                 <div>
                   <label
                     className={`${styles["edit-profile-label"]} ${styles["edit-profile-label2"]}`}
-                    for="phone"
+                    htmlFor="phone"
                   >
-                    <i class="fa-solid fa-phone"></i>
+                    <i className="fa-solid fa-phone"></i>
                     Phone
                   </label>
                 </div>
@@ -167,9 +167,9 @@ function EditProfile(props) {
                 <div>
                   <label
                     className={`${styles["edit-profile-label"]} ${styles["edit-profile-label2"]}`}
-                    for="fb"
+                    htmlFor="fb"
                   >
-                    <i class="fa-brands fa-facebook"></i>
+                    <i className="fa-brands fa-facebook"></i>
                     Facebook
                   </label>
                 </div>
@@ -179,9 +179,9 @@ function EditProfile(props) {
                 <div>
                   <label
                     className={`${styles["edit-profile-label"]} ${styles["edit-profile-label2"]}`}
-                    for="insta"
+                    htmlFor="insta"
                   >
-                    <i class="fa-brands fa-instagram"></i>
+                    <i className="fa-brands fa-instagram"></i>
                     Instagram
                   </label>
                 </div>
@@ -195,9 +195,9 @@ function EditProfile(props) {
                 <div>
                   <label
                     className={`${styles["edit-profile-label"]} ${styles["edit-profile-label2"]}`}
-                    for="linkedin"
+                    htmlFor="linkedin"
                   >
-                    <i class="fa-brands fa-linkedin"></i>
+                    <i className="fa-brands fa-linkedin"></i>
                     Linkedin
                   </label>
                 </div>
@@ -211,9 +211,9 @@ function EditProfile(props) {
                 <div>
                   <label
                     className={`${styles["edit-profile-label"]} ${styles["edit-profile-label2"]}`}
-                    for="tweet"
+                    htmlFor="tweet"
                   >
-                    <i class="fa-brands fa-twitter"></i>
+                    <i className="fa-brands fa-twitter"></i>
                     Twitter
                   </label>
                 </div>

@@ -11,6 +11,10 @@ function Main(props) {
     props.page("prevEvent");
   }
 
+  function openAddEvent() {
+    props.page("addEvent");
+  }
+
   return (
     <>
       <section
@@ -160,7 +164,7 @@ function Main(props) {
             </div>
           </div>
 
-          <div className={styles["add-card"]}>
+          <div className={styles["add-card"]} onClick={openAddEvent}>
             <i className="fa-solid fa-plus"></i>
           </div>
         </div>

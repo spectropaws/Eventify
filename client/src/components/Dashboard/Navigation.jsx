@@ -80,6 +80,15 @@ function Navigation(props) {
     if (props.page !== "main") props.setPage("main");
   }
 
+  function openAddEvent() {
+    if (props.user.role) props.setPage("addEvent");
+    else openMain();
+  }
+
+  function openSearchEvents() {
+    props.setPage("searchEvents");
+  }
+
   return (
     <>
       <section
@@ -117,7 +126,7 @@ function Navigation(props) {
               <a
                 href="#upcoming-events"
                 className={`${styles.btn} ${styles["btn-profile-nav"]}`}
-                onClick={openMain}
+                onClick={openAddEvent}
               >
                 {props.user.role ? "Add Event" : "Upcoming Events"}
               </a>
@@ -137,6 +146,7 @@ function Navigation(props) {
                 <a
                   href="#previous-events"
                   className={`${styles.btn} ${styles["btn-profile-nav"]}`}
+                  onClick={openSearchEvents}
                 >
                   Search Events
                 </a>
