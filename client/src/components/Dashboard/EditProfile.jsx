@@ -133,22 +133,25 @@ function EditProfile(props) {
           <form>
             <h2 className={styles["secondary-heading"]}>Edit your profile</h2>
             <div className={styles["change-profile-photo-container"]}>
-              <div className={styles["default-profile-img"]} role="img"></div>
-              <input
-                type="file"
-                id="profile-img"
-                name="file"
-                accept="image/png, image/jpeg, image/jpg"
-                className={styles["profile-img-field"]}
-              />
-              <label
-                htmlFor="profile-img"
-                className={styles["change-profile-img-btn"]}
-              >
-                <i className="fa-solid fa-camera"></i>
-              </label>
+              <div className={styles["profile-pic-display"]}>
+                <div className={styles["btn-background"]}>
+                  <div className={styles["profile-pic-change-btn"]}>
+                    <input
+                      type="file"
+                      id="profile-pic"
+                      name="profile-pic"
+                      accept="image/png image/jpg image/jpeg"
+                      className={styles["profile-img-field"]}
+                    />
+                    <label htmlFor="profile-pic">
+                      <i
+                        className={`${"a-solid fa-camera"} ${styles["icon"]}`}
+                      ></i>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-
             <div className={styles["form-elements"]}>
               <div className={styles["form-input-container"]}>
                 <label
