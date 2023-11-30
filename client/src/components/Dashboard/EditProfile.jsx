@@ -77,6 +77,19 @@ function EditProfile(props) {
       .catch((err) => console.log(err));
   }
 
+  function uploadProfilePhoto(event) {
+    const formdata = new FormData();
+    formdata.append("username", props.user.username);
+    formdata.append("file", event.target.files[0]);
+
+    request
+      .post("/edit-profile/profile", formdata, {
+        "content-type": "multipart/form-data",
+      })
+      .then(() => window.location.reload())
+      .catch((err) => console.log(err));
+  }
+
   function updateProfile() {
     request
       .post("/edit-profile", newProfile)
@@ -143,11 +156,10 @@ function EditProfile(props) {
                       name="profile-pic"
                       accept="image/png image/jpg image/jpeg"
                       className={styles["profile-img-field"]}
+                      onChange={uploadProfilePhoto}
                     />
                     <label htmlFor="profile-pic">
-                      <i
-                        className={`${"a-solid fa-camera"} ${styles["icon"]}`}
-                      ></i>
+                      <i className={`${styles["icon"]} a-solid fa-camera`}></i>
                     </label>
                   </div>
                 </div>
