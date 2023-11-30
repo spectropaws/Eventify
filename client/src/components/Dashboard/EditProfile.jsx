@@ -24,6 +24,7 @@ function EditProfile(props) {
     username: props.user.username,
     name: props.user.name,
     designation: props.user.designation,
+    organization: props.user.organization,
     bio: props.user.description,
     email: props.user.email,
     gender: props.user.gender
@@ -205,7 +206,14 @@ function EditProfile(props) {
                 >
                   Organization
                 </label>
-                <input type="text" id="org" placeholder="Company Ltd/Inc" />
+                <input
+                  type="text"
+                  id="org"
+                  placeholder="Company Ltd/Inc"
+                  name="organization"
+                  value={newProfile.organization}
+                  onChange={handleEditChange}
+                />
               </div>
 
               <div

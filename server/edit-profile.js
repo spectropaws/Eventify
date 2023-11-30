@@ -17,6 +17,7 @@ async function updateProfile(username, newProfile) {
     newProfile.email,
     gender,
     newProfile.age ? newProfile.age : "null",
+    newProfile.organization ? newProfile.organization : "null",
     newProfile.social,
     username,
   ];

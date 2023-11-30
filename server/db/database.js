@@ -80,7 +80,7 @@ async function updateBackground(background, username) {
 
 async function updateProfile(values) {
   const query =
-    "update users set name=$1, designation=$2, description=$3, email=$4, gender=$5, age=$6, social=$7 where username=$8";
+    "update users set name=$1, designation=$2, description=$3, email=$4, gender=$5, age=$6, organization=$7, social=$8 where username=$9";
 
   try {
     await runQuery(query, values);

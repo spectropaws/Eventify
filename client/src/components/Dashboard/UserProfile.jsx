@@ -12,8 +12,6 @@ function UserProfile(props) {
     "/images/background/" +
     props.user.backgroundimage;
 
-  //alert("Hello");
-
   return (
     <>
       <section
@@ -40,14 +38,14 @@ function UserProfile(props) {
           <div className={styles["profile-card"]}>
             <h3 className={styles["tertiary-heading"]}>{props.user.name}</h3>
             <h4 className={styles["quaternary-heading"]}>
-              {props.user.role
-                ? (props.user.designation
-                    ? props.user.designation
-                    : "Event Manager ") +
-                  (props.user.organization
-                    ? "at " + props.user.organization
-                    : "")
-                : "Normal User"}
+              {(props.user.designation
+                ? props.user.designation
+                : props.user.role
+                ? "Event Manager"
+                : "User") +
+                (props.user.organization
+                  ? " at " + props.user.organization
+                  : "")}
             </h4>
             <p className={styles["profile-bio"]}>
               {props.user.description ? props.user.description : "Bio"}
@@ -62,8 +60,13 @@ function UserProfile(props) {
                 <span>Email: {props.user.email}</span>
               </div>
               <div className={styles["user-field"]}>
-                <i className="fa-solid fa-person"></i>
-                {/* <i className="fa-solid fa-person-dress"></i> */}
+                {props.user.gender === null ? (
+                  <i className="fa-solid fa-person"></i>
+                ) : props.user.gender ? (
+                  <i className="fa-solid fa-person"></i>
+                ) : (
+                  <i className="fa-solid fa-person-dress"></i>
+                )}
                 <span>
                   Gender:{" "}
                   {props.user.gender === null
