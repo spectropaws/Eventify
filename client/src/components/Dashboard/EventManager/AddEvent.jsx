@@ -40,12 +40,6 @@ function AddEvent(props) {
 
       <section className={styles["event-details-form-section"]}>
         <div className={styles["event-details-container"]}>
-          <div className={styles["event-descrip"]}>
-            <textarea
-              className={styles["event-descrip-box"]}
-              placeholder="Write an event description"
-            ></textarea>
-          </div>
           <div className={styles["details-card-container"]}>
             <div className={styles["details-card"]}>
               <h4 className={styles["quaternary-heading"]}>
@@ -142,8 +136,29 @@ function AddEvent(props) {
                     />
                   </span>
                 </div>
+                <div className={`${styles["info-field"]} ${styles["if-qr"]}`}>
+                  <i class="fa-solid fa-qrcode"></i>
+                  <span>
+                    Upload QR code:
+                    <input
+                      type="file"
+                      id="qrcode"
+                      name="qrcode"
+                      className={`${styles["in-event-details"]} ${styles["in-qr"]}`}
+                    />
+                    <label htmlFor="qrcode" className={styles["qr-code-label"]}>
+                      Upload here
+                    </label>
+                  </span>
+                </div>
               </div>
             </div>
+          </div>
+          <div className={styles["event-description"]}>
+            <textarea
+              className={styles["event-descrip-box"]}
+              placeholder="Write an event description"
+            ></textarea>
           </div>
         </div>
       </section>

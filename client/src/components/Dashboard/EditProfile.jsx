@@ -159,7 +159,7 @@ function EditProfile(props) {
                       onChange={uploadProfilePhoto}
                     />
                     <label htmlFor="profile-pic">
-                      <i className={`${styles["icon"]} a-solid fa-camera`}></i>
+                      <i className={`${styles.icon} fa-solid fa-camera`}></i>
                     </label>
                   </div>
                 </div>
