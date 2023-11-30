@@ -8,16 +8,16 @@ async function backgroundImage(username, image) {
 async function updateProfile(username, newProfile) {
   var gender;
   if (newProfile.gender) gender = newProfile.gender === "male" ? true : false;
-  else gender = "null";
+  else gender = null;
 
   const values = [
     newProfile.name,
-    newProfile.designation ? newProfile.designation : "null",
-    newProfile.bio ? newProfile.bio : "null",
+    newProfile.designation ? newProfile.designation : null,
+    newProfile.bio ? newProfile.bio : null,
     newProfile.email,
     gender,
-    newProfile.age ? newProfile.age : "null",
-    newProfile.organization ? newProfile.organization : "null",
+    newProfile.age ? newProfile.age : null,
+    newProfile.organization ? newProfile.organization : null,
     newProfile.social,
     username,
   ];
