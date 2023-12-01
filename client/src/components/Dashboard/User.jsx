@@ -4,6 +4,8 @@ import EventDetails from "./User/EventDetails";
 import PreviousEventDetails from "./User/PreviousEventDetails";
 import EditProfile from "./EditProfile";
 import SearchEvents from "./User/SearchEvents";
+import EventRegistration from "./User/EventRegistration";
+import BelovedOrganizer from "./User/BelovedOrganizer";
 
 function User(props) {
   if (props.page === "main") {
