@@ -1,8 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import styles from "./../dashboard.module.css";
 
 function AddEvent(props) {
+  const [event, setEvent] = useState({
+    creator: props.user.username,
+    name: "",
+    tickets: 0,
+    price: 0,
+    description: "",
+    city: "",
+    venue: "",
+    starttime: "",
+    endtime: "",
+    registrationclosetime: "",
+    backgroundimage: "",
+    qrcode: "",
+    upiid: "",
+  });
+
+  function handleInput(event) {
+    const name = event.target.name;
+    var value;
+    if (name === "qrcode" || name === "backgroundimage")
+      value = event.target.files[0];
+    else value = event.target.value;
+    setEvent((prevValue) => ({ ...prevValue, [name]: value }));
+  }
+
   function handleCloseEvents() {
     props.page("main");
   }
@@ -13,17 +38,20 @@ function AddEvent(props) {
         <input
           className={styles["event-title-input-box"]}
           type="text"
-          name="event-title"
+          name="name"
           id="event-title"
           placeholder="Event Title"
+          value={event.name}
+          onChange={handleInput}
         />
         <div className={styles["change-backcover"]}>
           <input
             type="file"
             id="file"
-            name="file"
+            name="backgroundimage"
             accept="image/png, image/jpeg, image/jpg"
             className={styles["bgcover-field"]}
+            onChange={handleInput}
           />
           <label htmlFor="file">
             <i className="fa-solid fa-camera"></i>
@@ -44,7 +72,7 @@ function AddEvent(props) {
           <div className={styles["details-card-container"]}>
             <div className={styles["details-card"]}>
               <h4 className={styles["quaternary-heading"]}>
-                Event title here!
+                {event.name ? event.name : "Event title"}
               </h4>
               <div className={styles["info-field-container"]}>
                 <div
@@ -55,8 +83,11 @@ function AddEvent(props) {
                     Tickets available:
                     <input
                       type="text"
+                      name="tickets"
                       placeholder="Number of tickets"
                       className={`${styles["in-event-details"]} ${styles["in-ticket"]}`}
+                      value={event.tickets}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>
@@ -66,8 +97,11 @@ function AddEvent(props) {
                     Registration Fees:
                     <input
                       type="text"
+                      name="price"
                       placeholder="in Rupees"
                       className={`${styles["in-event-details"]} ${styles["in-fees"]}`}
+                      value={event.price}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>
@@ -78,7 +112,10 @@ function AddEvent(props) {
                     <input
                       type="text"
                       placeholder="City"
+                      name="city"
                       className={`${styles["in-event-details"]} ${styles["in-city"]}`}
+                      value={event.city}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>
@@ -91,8 +128,11 @@ function AddEvent(props) {
                     Venue:
                     <input
                       type="text"
+                      name="venue"
                       placeholder="Address"
                       className={`${styles["in-event-details"]} ${styles["in-venue"]}`}
+                      value={event.venue}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>
@@ -113,14 +153,20 @@ function AddEvent(props) {
                     Event time:
                     <input
                       type="text"
+                      name="starttime"
                       placeholder="HH : MM"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
+                      value={event.starttime}
+                      onChange={handleInput}
                     />
                     to
                     <input
                       type="text"
+                      name="endtime"
                       placeholder="HH : MM"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
+                      value={event.endtime}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>
@@ -132,8 +178,11 @@ function AddEvent(props) {
                     Registration closes on:
                     <input
                       type="text"
+                      name="registrationclosetime"
                       placeholder="DD/MM/YYYY"
                       className={`${styles["in-event-details"]} ${styles["in-reg-close"]}`}
+                      value={event.registrationclosetime}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>
@@ -146,6 +195,7 @@ function AddEvent(props) {
                       id="qrcode"
                       name="qrcode"
                       className={`${styles["in-event-details"]} ${styles["in-qr"]}`}
+                      onChange={handleInput}
                     />
                     <label htmlFor="qrcode" className={styles["qr-code-label"]}>
                       Upload here
@@ -159,6 +209,9 @@ function AddEvent(props) {
             <textarea
               className={styles["event-descrip-box"]}
               placeholder="Write an event description"
+              name="description"
+              value={event.description}
+              onChange={handleInput}
             ></textarea>
           </div>
         </div>

@@ -20,7 +20,6 @@ function Dashboard() {
         .post("/signin", { token: token })
         .then((response) => {
           if (response.data) {
-            console.log(response.data);
             setUser({ ...response.data, loggedIn: true });
           } else {
             localStorage.removeItem("token");

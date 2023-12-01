@@ -8,9 +8,6 @@ import EditProfile from "./EditProfile";
 import AddEvent from "./EventManager/AddEvent";
 
 function EventManager(props) {
-  let upcomingEvents = [],
-    previousEvents = [];
-
   function switchBoards() {
     var current;
 
