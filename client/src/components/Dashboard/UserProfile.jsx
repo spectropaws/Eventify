@@ -7,10 +7,15 @@ function UserProfile(props) {
     props.page("editProfile");
   }
 
-  const imageUrl =
+  const backgroundImageUrl =
     process.env.REACT_APP_API_SERVER +
     "/images/background/" +
     props.user.backgroundimage;
+
+  const profileImageUrl =
+    process.env.REACT_APP_API_SERVER +
+    "/images/profile/" +
+    props.user.profilephoto;
 
   return (
     <>
@@ -22,8 +27,10 @@ function UserProfile(props) {
             ? {
                 background:
                   "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" +
-                  imageUrl +
+                  backgroundImageUrl +
                   "')",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
               }
             : {}
         }
@@ -98,6 +105,15 @@ function UserProfile(props) {
             <div
               role="img"
               className={`${styles["profile-img"]} ${styles["profile-img2"]}`}
+              style={
+                props.user.profilephoto
+                  ? {
+                      background: "url('" + profileImageUrl + "')",
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                    }
+                  : {}
+              }
             ></div>
             <div className={styles["social-links-container"]}>
               <div className={styles["social-link"]}>

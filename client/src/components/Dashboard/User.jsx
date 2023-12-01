@@ -42,6 +42,10 @@ function User(props) {
     );
   else if (props.page === "searchEvents")
     return <SearchEvents page={props.setPage} />;
+  else if (props.page === "eventRegistration")
+    return <EventRegistration page={props.setPage} />;
+  else if (props.page === "eventRegistration")
+    return <BelovedOrganizer page={props.setPage} />;
 }
 
 export default User;

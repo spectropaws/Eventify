@@ -1,7 +1,10 @@
 const database = require("./db/database");
 
-async function backgroundImage(username, image) {
-  if (await database.updateBackground(image, username)) return true;
+async function uploadImage(username, image, type) {
+  var column;
+  if (type === "background") column = "backgroundimage";
+  else if (type === "profile") column = "profilephoto";
+  if (await database.updateImage(image, username, column)) return true;
   else return null;
 }
 
@@ -26,5 +29,5 @@ async function updateProfile(username, newProfile) {
   else return null;
 }
 
-exports.backgroundImage = backgroundImage;
+exports.uploadImage = uploadImage;
 exports.updateProfile = updateProfile;

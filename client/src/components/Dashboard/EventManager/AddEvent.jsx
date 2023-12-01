@@ -6,6 +6,7 @@ function AddEvent(props) {
   function handleCloseEvents() {
     props.page("main");
   }
+
   return (
     <>
       <section className={styles["back-cover"]}>

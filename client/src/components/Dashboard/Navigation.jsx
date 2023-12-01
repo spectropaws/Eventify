@@ -89,6 +89,11 @@ function Navigation(props) {
     props.setPage("searchEvents");
   }
 
+  const imageUrl =
+    process.env.REACT_APP_API_SERVER +
+    "/images/profile/" +
+    props.user.profilephoto;
+
   return (
     <>
       <section
@@ -99,6 +104,15 @@ function Navigation(props) {
           <div
             role="img"
             className={`${styles["profile-img"]} ${styles["profile-img1"]}`}
+            style={
+              props.user.profilephoto
+                ? {
+                    background: `url(${imageUrl})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }
+                : {}
+            }
           ></div>
           <div
             className={`${styles["profile-text"]} ${styles["flex-container"]}`}

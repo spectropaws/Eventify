@@ -66,9 +66,9 @@ async function fetchUserDetails(username) {
 
 // ====== Edit Profile ==============
 
-async function updateBackground(background, username) {
-  const query = "update users set backgroundimage=$1 where username=$2";
-  const values = [background, username];
+async function updateImage(image, username, type) {
+  const query = "update users set " + type + "=$1 where username=$2";
+  const values = [image, username];
 
   try {
     await runQuery(query, values);
@@ -94,5 +94,5 @@ exports.userExists = userExists;
 exports.register = register;
 exports.getPasswordHashAndSalt = getPasswordHashAndSalt;
 exports.fetchUserDetails = fetchUserDetails;
-exports.updateBackground = updateBackground;
+exports.updateImage = updateImage;
 exports.updateProfile = updateProfile;

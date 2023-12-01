@@ -128,16 +128,22 @@ app.post(
   upload.single("file"),
   async function (req, res) {
     const user = await auth.getUserData(req.body.username);
-    const filename = user.backgroundimage;
+    var filename;
+    if (req.params.type === "profile") filename = user.profilephoto;
+    else if (req.params.type === "background") filename = user.backgroundimage;
 
-    !(await editor.backgroundImage(req.body.username, req.file.filename)) &&
-      console.log("Error uploading image path");
+    !(await editor.uploadImage(
+      req.body.username,
+      req.file.filename,
+      req.params.type
+    )) && console.log("Error uploading image path");
 
-    fs.unlink("public/images/" + req.params.type + "/" + filename, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
+    if (filename)
+      fs.unlink("public/images/" + req.params.type + "/" + filename, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
     res.send(null);
   }
 );

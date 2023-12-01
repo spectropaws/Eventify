@@ -17,6 +17,14 @@ function SearchEvents(props) {
     props.page("main");
   }
 
+  function openEventRegistration() {
+    props.page("eventRegistration");
+  }
+
+  function openBelovedOrganizer() {
+    props.page("belovedOrganizer");
+  }
+
   return (
     <>
       <section className={styles["back-cover"]} ref={topElem}>
@@ -79,7 +87,11 @@ function SearchEvents(props) {
                   <span>Registration fees: Rs. 500</span>
                 </div>
               </div>
-              <a href="#" className={`${styles.btn} ${styles["reg-now-btn"]}`}>
+              <a
+                href="#"
+                className={`${styles.btn} ${styles["reg-now-btn"]}`}
+                onClick={openEventRegistration}
+              >
                 Register Now
               </a>
             </div>
@@ -257,6 +269,7 @@ function SearchEvents(props) {
               <a
                 href="#"
                 className={`${styles.btn} ${styles["view-org-evnt-btn"]}`}
+                onClick={openBelovedOrganizer}
               >
                 View Events
               </a>

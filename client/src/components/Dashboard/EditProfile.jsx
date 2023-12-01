@@ -97,10 +97,15 @@ function EditProfile(props) {
       .catch((err) => console.log(err));
   }
 
-  const imageUrl =
+  const backgroundImageUrl =
     process.env.REACT_APP_API_SERVER +
     "/images/background/" +
     props.user.backgroundimage;
+
+  const profileImageUrl =
+    process.env.REACT_APP_API_SERVER +
+    "/images/profile/" +
+    props.user.profilephoto;
 
   return (
     <>
@@ -112,8 +117,10 @@ function EditProfile(props) {
             ? {
                 background:
                   "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" +
-                  imageUrl +
+                  backgroundImageUrl +
                   "')",
+                backgroundPosition: "center",
+                backgroundSize: "cover",
               }
             : {}
         }
@@ -147,7 +154,18 @@ function EditProfile(props) {
           <form>
             <h2 className={styles["secondary-heading"]}>Edit your profile</h2>
             <div className={styles["change-profile-photo-container"]}>
-              <div className={styles["profile-pic-display"]}>
+              <div
+                className={styles["profile-pic-display"]}
+                style={
+                  props.user.profilephoto
+                    ? {
+                        background: "url('" + profileImageUrl + "')",
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                      }
+                    : {}
+                }
+              >
                 <div className={styles["btn-background"]}>
                   <div className={styles["profile-pic-change-btn"]}>
                     <input
