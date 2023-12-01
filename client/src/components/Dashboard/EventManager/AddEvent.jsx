@@ -1,10 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import styles from "./../dashboard.module.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+
+const request = axios.create({
+  withCredentials: true,
+  baseURL: process.env.REACT_APP_API_SERVER,
+});
 
 function AddEvent(props) {
   const [event, setEvent] = useState({
-    creator: props.user.username,
+    username: props.user.username,
     name: "",
     tickets: 0,
     price: 0,
@@ -19,13 +27,47 @@ function AddEvent(props) {
     upiid: "",
   });
 
-  function handleInput(event) {
+  const getBase64 = async (file) => {
+    return new Promise((resolve) => {
+      let baseURL = "";
+      let reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        baseURL = reader.result;
+        resolve(baseURL);
+      };
+    });
+  };
+
+  async function handleInput(event) {
     const name = event.target.name;
     var value;
-    if (name === "qrcode" || name === "backgroundimage")
-      value = event.target.files[0];
-    else value = event.target.value;
+    if (name === "backgroundimage") value = event.target.files[0];
+    else if (name === "qrcode") {
+      value = await getBase64(event.target.files[0]);
+    } else value = event.target.value;
     setEvent((prevValue) => ({ ...prevValue, [name]: value }));
+  }
+
+  function createEvent() {
+    const formdata = new FormData();
+    const keys = Object.keys(event);
+    keys.forEach((key) => {
+      if (key !== "backgroundimage") {
+        formdata.append(key, event[key]);
+      }
+    });
+    formdata.append("backgroundimage", event.backgroundimage);
+    request
+      .post("/create/event", formdata, {
+        "content-type": "multipart/form-data",
+      })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleCloseEvents() {
@@ -63,7 +105,7 @@ function AddEvent(props) {
           className={`${styles.btn} ${styles["btn-close"]}`}
           onClick={handleCloseEvents}
         >
-          <i class="fa-solid fa-circle-xmark"></i>
+          <i className="fa-solid fa-circle-xmark"></i>
         </a>
       </section>
 
@@ -78,7 +120,7 @@ function AddEvent(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-tickets-avail"]}`}
                 >
-                  <i class="fa-solid fa-ticket"></i>
+                  <i className="fa-solid fa-ticket"></i>
                   <span>
                     Tickets available:
                     <input
@@ -92,7 +134,7 @@ function AddEvent(props) {
                   </span>
                 </div>
                 <div className={`${styles["info-field"]} ${styles["if-fees"]}`}>
-                  <i class="fa-solid fa-money-check-dollar"></i>
+                  <i className="fa-solid fa-money-check-dollar"></i>
                   <span>
                     Registration Fees:
                     <input
@@ -106,7 +148,7 @@ function AddEvent(props) {
                   </span>
                 </div>
                 <div className={`${styles["info-field"]} ${styles["if-city"]}`}>
-                  <i class="fa-solid fa-city"></i>
+                  <i className="fa-solid fa-city"></i>
                   <span>
                     City:
                     <input
@@ -122,8 +164,8 @@ function AddEvent(props) {
                 <div
                   className={`${styles["info-field"]} ${styles["if-location"]}`}
                 >
-                  <i class="fa-solid fa-location-crosshairs"></i>
-                  {/* <i class="fa-solid fa-location-dot"></i> */}
+                  <i className="fa-solid fa-location-crosshairs"></i>
+                  {/* <i className="fa-solid fa-location-dot"></i> */}
                   <span>
                     Venue:
                     <input
@@ -136,58 +178,87 @@ function AddEvent(props) {
                     />
                   </span>
                 </div>
-                <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
-                  <i class="fa-solid fa-calendar"></i>
-                  <span>
-                    Event date:
-                    <input
-                      type="text"
-                      placeholder="DD/MM/YYYY"
-                      className={`${styles["in-event-details"]} ${styles["in-date"]}`}
-                    />
-                  </span>
-                </div>
+
                 <div className={`${styles["info-field"]} ${styles["if-time"]}`}>
-                  <i class="fa-solid fa-hourglass-end"></i>
+                  <i className="fa-solid fa-hourglass-end"></i>
                   <span>
                     Event time:
-                    <input
+                    <DatePicker
+                      showTimeSelect
+                      selected={new Date(Date.now())}
+                      placeholderText="Start"
+                      className={`${styles["in-event-details"]} ${styles["in-time"]}`}
+                      value={event.starttime}
+                      onChange={(date) =>
+                        setEvent((prevValue) => ({
+                          ...prevValue,
+                          starttime: date,
+                        }))
+                      }
+                    />
+                    {/* <input
                       type="text"
                       name="starttime"
                       placeholder="HH : MM"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
                       value={event.starttime}
                       onChange={handleInput}
-                    />
+                    /> */}
                     to
-                    <input
+                    <DatePicker
+                      showTimeSelect
+                      selected={new Date(Date.now())}
+                      placeholderText="End"
+                      className={`${styles["in-event-details"]} ${styles["in-time"]}`}
+                      value={event.endtime}
+                      onChange={(date) =>
+                        setEvent((prevValue) => ({
+                          ...prevValue,
+                          endtime: date,
+                        }))
+                      }
+                    />
+                    {/* <input
                       type="text"
                       name="endtime"
                       placeholder="HH : MM"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
                       value={event.endtime}
                       onChange={handleInput}
-                    />
+                    /> */}
                   </span>
                 </div>
                 <div
                   className={`${styles["info-field"]} ${styles["if-reg-close"]}`}
                 >
-                  <i class="fa-solid fa-clock"></i>
+                  <i className="fa-solid fa-clock"></i>
                   <span>
                     Registration closes on:
-                    <input
+                    {/* <input
                       type="text"
                       name="registrationclosetime"
                       placeholder="DD/MM/YYYY"
                       className={`${styles["in-event-details"]} ${styles["in-reg-close"]}`}
                       value={event.registrationclosetime}
                       onChange={handleInput}
+                    /> */}
+                    <DatePicker
+                      showTimeSelect
+                      selected={new Date(Date.now())}
+                      placeholderText="Choose date"
+                      className={`${styles["in-event-details"]} ${styles["in-time"]}`}
+                      value={event.registrationclosetime}
+                      onChange={(date) =>
+                        setEvent((prevValue) => ({
+                          ...prevValue,
+                          registrationclosetime: date,
+                        }))
+                      }
                     />
                   </span>
                 </div>
                 <div className={`${styles["info-field"]} ${styles["if-qr"]}`}>
-                  <i class="fa-solid fa-qrcode"></i>
+                  <i className="fa-solid fa-qrcode"></i>
                   <span>
                     Upload QR code:
                     <input
@@ -218,7 +289,11 @@ function AddEvent(props) {
       </section>
 
       <section className={styles["create-event-section"]}>
-        <a href="#" className={`${styles.btn} ${styles["create-evt-btn"]}`}>
+        <a
+          href="#"
+          className={`${styles.btn} ${styles["create-evt-btn"]}`}
+          onClick={createEvent}
+        >
           Create Event
         </a>
       </section>

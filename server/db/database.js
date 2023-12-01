@@ -87,6 +87,35 @@ async function updateProfile(values) {
     return true;
   } catch (e) {
     console.log(e);
+    return false;
+  }
+}
+
+async function addEventName(username, events) {
+  const query = "update users set events=$1 where username=$2";
+  const values = [events, username];
+  try {
+    await runQuery(query, values);
+    return true;
+  } catch (e) {
+    console.log(err);
+    return false;
+  }
+}
+
+// ==========================================
+
+// =========== Event handling ================
+
+async function insertEvent(values) {
+  const query =
+    "insert into events(creator, name, tickets, price, description, city, venue, starttime, endtime, registrationclosetime, backgroundimage, qrcode) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)";
+  try {
+    await runQuery(query, values);
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
   }
 }
 
@@ -96,3 +125,5 @@ exports.getPasswordHashAndSalt = getPasswordHashAndSalt;
 exports.fetchUserDetails = fetchUserDetails;
 exports.updateImage = updateImage;
 exports.updateProfile = updateProfile;
+exports.addEventName = addEventName;
+exports.insertEvent = insertEvent;

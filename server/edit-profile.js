@@ -29,5 +29,14 @@ async function updateProfile(username, newProfile) {
   else return null;
 }
 
+async function addEvent(username, eventName) {
+  prevUser = await database.fetchUserDetails(username);
+  var events = prevUser.events ? prevUser.events : [];
+  events.push(eventName);
+  if (await database.addEventName(username, events)) return true;
+  else return false;
+}
+
 exports.uploadImage = uploadImage;
 exports.updateProfile = updateProfile;
+exports.addEvent = addEvent;

@@ -30,7 +30,7 @@ let upload = multer({ storage: storage });
 const jsonParser = bodyParser.json();
 const auth = require("./auth/authenticate");
 const editor = require("./edit-profile");
-const { fetchUserDetails } = require("./db/database");
+const createEvent = require("./create-event");
 require("dotenv").config();
 
 const app = express();
@@ -155,9 +155,23 @@ app.post("/edit-profile", jsonParser, async function (req, res) {
   res.send(null);
 });
 
-app.post("/create", jsonParser, (req, res) => {
-  const name = req.body.name;
-});
+app.post(
+  "/create/:type",
+  upload.single("backgroundimage"),
+  async (req, res) => {
+    if (
+      await createEvent.createEvent({
+        ...req.body,
+        backgroundimage: req.file ? req.file.filename : null,
+      })
+    ) {
+      !(await editor.addEvent(req.body.username, req.body.name)) &&
+        console.log("Error updating user's event list");
+    } else console.log("Error inserting event data to database");
+
+    res.send(null);
+  }
+);
 
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);
