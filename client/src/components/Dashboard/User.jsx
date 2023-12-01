@@ -46,7 +46,7 @@ function User(props) {
     return <SearchEvents page={props.setPage} />;
   else if (props.page === "eventRegistration")
     return <EventRegistration page={props.setPage} />;
-  else if (props.page === "eventRegistration")
+  else if (props.page === "belovedOrganizer")
     return <BelovedOrganizer page={props.setPage} />;
 }
 

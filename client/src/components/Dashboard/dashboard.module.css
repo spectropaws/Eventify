@@ -460,7 +460,7 @@ html {
 .btn-close:link,
 .btn-close:visited {
   font-size: 3.2rem;
-  color: #000;
+  color: #f03e3e;
   opacity: 0.6;
   position: fixed;
   top: 1.6rem;
@@ -1134,4 +1134,26 @@ tbody tr:nth-child(even) {
 .create-evt-btn:active {
   background-color: #fff;
   color: #333;
+}
+
+.beloved-org-section {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  gap: 2.4rem;
+  padding: 3.2rem;
+}
+
+.org-bio-card {
+  background-color: #fff;
+  box-shadow: 0 0.4rem 0.8rem #777;
+  border-radius: 1rem;
+  padding: 3.2rem;
+}
+
+.org-bio {
+  font-size: 2rem;
+}
+
+.loved-org-evt-section {
+  padding: 3.2rem;
 }
