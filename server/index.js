@@ -30,7 +30,7 @@ let upload = multer({ storage: storage });
 const jsonParser = bodyParser.json();
 const auth = require("./auth/authenticate");
 const editor = require("./edit-profile");
-const createEvent = require("./create-event");
+const events = require("./events");
 require("dotenv").config();
 
 const app = express();
@@ -160,7 +160,7 @@ app.post(
   upload.single("backgroundimage"),
   async (req, res) => {
     if (
-      await createEvent.createEvent({
+      await events.createEvent({
         ...req.body,
         backgroundimage: req.file ? req.file.filename : null,
       })
@@ -172,6 +172,10 @@ app.post(
     res.send(null);
   }
 );
+
+app.post("/event-details", jsonParser, async function (req, res) {
+  res.send(await events.getEventDetails(req.body.eventName));
+});
 
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);

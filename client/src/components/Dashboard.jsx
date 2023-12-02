@@ -5,6 +5,11 @@ import Userspace from "./Dashboard/Userspace";
 
 function Dashboard() {
   const [user, setUser] = useState({ loggedIn: false });
+  const [events, setEvents] = useState({
+    eventList: user.events || [],
+    fetched: false,
+  });
+
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -27,14 +32,39 @@ function Dashboard() {
             navigate("/");
           }
         })
-        .catch(() => navigate("/network-error"));
+        .catch((err) => console.log(err));
+
+      //console.log(events);
     }
   }, [request, token, navigate, user]);
 
+  useEffect(() => {
+    if (!events.fetched && user.loggedIn) {
+      user.events.forEach((event) => {
+        console.log(event);
+        request
+          .post("/event-details", { eventName: event })
+          .then((res) => {
+            setEvents((prevValue) => ({
+              ...prevValue,
+              eventList: [...prevValue.eventList, res.data],
+            }));
+          })
+          .catch((e) => console.log(e));
+      });
+      setEvents((prevValue) => ({ ...prevValue, fetched: true }));
+    }
+  }, [user, events, request]);
+
   return (
     <>
-      {user.loggedIn && (
-        <Userspace token={token} user={user} setUser={setUser} />
+      {user.loggedIn && events.fetched && (
+        <Userspace
+          token={token}
+          user={user}
+          setUser={setUser}
+          events={events.eventList}
+        />
       )}
     </>
   );

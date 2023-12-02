@@ -119,6 +119,13 @@ async function insertEvent(values) {
   }
 }
 
+async function fetchEventDetails(eventName) {
+  const query = "select * from events where name=$1";
+  const values = [eventName];
+  const result = await runQuery(query, values);
+  return result.rows[0];
+}
+
 exports.userExists = userExists;
 exports.register = register;
 exports.getPasswordHashAndSalt = getPasswordHashAndSalt;
@@ -127,3 +134,4 @@ exports.updateImage = updateImage;
 exports.updateProfile = updateProfile;
 exports.addEventName = addEventName;
 exports.insertEvent = insertEvent;
+exports.fetchEventDetails = fetchEventDetails;

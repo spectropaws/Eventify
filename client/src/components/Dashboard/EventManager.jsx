@@ -29,7 +29,7 @@ function EventManager(props) {
       current = (
         <>
           <UserProfile user={props.user} page={props.setPage} />
-          <Main page={props.setPage} />
+          <Main page={props.setPage} user={props.user} events={props.events} />
         </>
       );
 

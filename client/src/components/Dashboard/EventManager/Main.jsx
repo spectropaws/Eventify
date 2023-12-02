@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import styles from "./../dashboard.module.css";
+import UpcomingEventsCard from "./UpcomingEventsCard";
 
 function Main(props) {
-  function handleDetails() {
-    props.page("event");
-  }
-
   function handlePrevDetails() {
     props.page("prevEvent");
   }
@@ -23,41 +20,11 @@ function Main(props) {
       >
         <h2 className={styles["secondary-heading"]}>Upcoming Events</h2>
         <div className={styles["card-container"]}>
-          <div className={styles["card"]}>
-            <div className={styles["card-img"]} role="img"></div>
-            <div className={styles["card-info"]}>
-              <h3 className={styles["quaternary-heading"]}>
-                Arduino Workshop (Hands on Session)
-              </h3>
-              <div className={styles["info-field-container"]}>
-                <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
-                  <i className="fa-solid fa-calendar"></i>
-                  <span>Event Date: 12/12/2023</span>
-                </div>
-                <div className={`${styles["info-field"]} ${styles["if-time"]}`}>
-                  <i className="fa-solid fa-clock"></i>
-                  <span>Duration: 2 hours</span>
-                </div>
-                <div
-                  className={`${styles["info-field"]} ${styles["if-tickets"]}`}
-                >
-                  <i className="fa-solid fa-ticket"></i>
-                  <span>Tickets available: 45</span>
-                </div>
-                <div className={`${styles["info-field"]} ${styles["if-reg"]}`}>
-                  <i className="fa-solid fa-registered"></i>
-                  <span>Registrations done: 155</span>
-                </div>
-              </div>
-              <a
-                href="#"
-                className={`${styles.btn} ${styles["know-more-btn"]}`}
-                onClick={handleDetails}
-              >
-                Know More
-              </a>
-            </div>
-          </div>
+          {props.events.map((event, index) => {
+            return (
+              <UpcomingEventsCard page={props.page} event={event} key={index} />
+            );
+          })}
 
           <div className={styles["card"]}>
             <div className={styles["card-img"]} role="img"></div>

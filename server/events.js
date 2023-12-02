@@ -24,4 +24,9 @@ async function createEvent(event) {
   else return false;
 }
 
+async function getEventDetails(eventName) {
+  return await database.fetchEventDetails(eventName);
+}
+
 exports.createEvent = createEvent;
+exports.getEventDetails = getEventDetails;
