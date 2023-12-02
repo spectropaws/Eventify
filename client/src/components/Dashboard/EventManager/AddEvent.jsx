@@ -246,7 +246,7 @@ function AddEvent(props) {
                       showIcon
                       showTimeSelect
                       placeholderText="Choose date"
-                      className={`${styles["in-event-details"]} ${styles["in-time"]}`}
+                      className={`${styles["in-event-details"]} ${styles["in-reg-close"]}`}
                       selected={event.registrationclosetime}
                       onChange={(date) =>
                         setEvent((prevValue) => ({
@@ -254,6 +254,21 @@ function AddEvent(props) {
                           registrationclosetime: date,
                         }))
                       }
+                    />
+                  </span>
+                </div>
+                <div
+                  className={`${styles["info-field"]} ${styles["if-upi-id"]}`}
+                >
+                  <i class="fa-solid fa-id-card"></i>
+                  <span>
+                    Enter UPI ID:
+                    <input
+                      type="text"
+                      id="upi-id"
+                      name="upi-id"
+                      placeholder="000-000-0000@abc"
+                      className={`${styles["in-event-details"]} ${styles["in-upi-id"]}`}
                     />
                   </span>
                 </div>

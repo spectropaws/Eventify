@@ -1050,7 +1050,7 @@ tbody tr:nth-child(even) {
 
 .event-details-container {
   display: grid;
-  grid-template-columns: 0.7fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .event-description {
@@ -1087,12 +1087,9 @@ tbody tr:nth-child(even) {
   color: inherit;
 }
 
+.in-reg-close,
 .in-time {
-  width: 8rem;
-}
-
-.in-reg-close {
-  width: 10rem;
+  width: 15rem;
 }
 
 .in-qr {
