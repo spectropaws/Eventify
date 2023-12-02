@@ -184,11 +184,11 @@ function AddEvent(props) {
                   <span>
                     Event time:
                     <DatePicker
+                      showIcon
                       showTimeSelect
-                      selected={new Date(Date.now())}
                       placeholderText="Start"
+                      selected={event.starttime}
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
-                      value={event.starttime}
                       onChange={(date) =>
                         setEvent((prevValue) => ({
                           ...prevValue,
@@ -206,11 +206,11 @@ function AddEvent(props) {
                     /> */}
                     to
                     <DatePicker
+                      showIcon
                       showTimeSelect
-                      selected={new Date(Date.now())}
+                      selected={event.endtime}
                       placeholderText="End"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
-                      value={event.endtime}
                       onChange={(date) =>
                         setEvent((prevValue) => ({
                           ...prevValue,
@@ -243,11 +243,11 @@ function AddEvent(props) {
                       onChange={handleInput}
                     /> */}
                     <DatePicker
+                      showIcon
                       showTimeSelect
-                      selected={new Date(Date.now())}
                       placeholderText="Choose date"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
-                      value={event.registrationclosetime}
+                      selected={event.registrationclosetime}
                       onChange={(date) =>
                         setEvent((prevValue) => ({
                           ...prevValue,

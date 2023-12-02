@@ -39,7 +39,7 @@ function Dashboard() {
   }, [request, token, navigate, user]);
 
   useEffect(() => {
-    if (!events.fetched && user.loggedIn) {
+    if (!events.fetched && user.loggedIn && user.events) {
       user.events.forEach((event) => {
         console.log(event);
         request
@@ -58,7 +58,7 @@ function Dashboard() {
 
   return (
     <>
-      {user.loggedIn && events.fetched && (
+      {user.loggedIn && (
         <Userspace
           token={token}
           user={user}
