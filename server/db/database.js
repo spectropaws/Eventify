@@ -1,3 +1,4 @@
+const { query } = require("express");
 const { Pool } = require("pg");
 require("dotenv").config();
 
@@ -126,6 +127,24 @@ async function fetchEventDetails(eventName) {
   return result.rows[0];
 }
 
+async function grantPermission(eventName) {
+  const query = "ALTER TABLE IF EXISTS $1 OWNER TO $2;";
+  const values = [eventName, process.env.DB_USERNAME];
+
+  runQuery(query, values);
+}
+
+async function fetchEventRegAndReviews(eventName, type) {
+  const query = "select * from $1_$2";
+  const values = [eventName, type];
+  try {
+    return await runQuery(query, values);
+  } catch (e) {
+    return null;
+  }
+}
+
+exports.runQuery = runQuery;
 exports.userExists = userExists;
 exports.register = register;
 exports.getPasswordHashAndSalt = getPasswordHashAndSalt;
@@ -135,3 +154,5 @@ exports.updateProfile = updateProfile;
 exports.addEventName = addEventName;
 exports.insertEvent = insertEvent;
 exports.fetchEventDetails = fetchEventDetails;
+exports.grantPermission = grantPermission;
+exports.fetchEventRegAndReviews = fetchEventRegAndReviews;

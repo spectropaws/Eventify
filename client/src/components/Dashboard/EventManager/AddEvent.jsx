@@ -14,8 +14,8 @@ function AddEvent(props) {
   const [event, setEvent] = useState({
     username: props.user.username,
     name: "",
-    tickets: 0,
-    price: 0,
+    tickets: "",
+    price: "",
     description: "",
     city: "",
     venue: "",
@@ -266,9 +266,11 @@ function AddEvent(props) {
                     <input
                       type="text"
                       id="upi-id"
-                      name="upi-id"
+                      name="upiid"
                       placeholder="000-000-0000@abc"
                       className={`${styles["in-event-details"]} ${styles["in-upi-id"]}`}
+                      value={event.upiid}
+                      onChange={handleInput}
                     />
                   </span>
                 </div>

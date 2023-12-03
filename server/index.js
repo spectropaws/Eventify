@@ -42,6 +42,7 @@ app.use(
     credentials: true,
   })
 );
+
 /* ============================================= */
 
 // Declarations:
@@ -62,10 +63,8 @@ function generateToken() {
   return token;
 }
 
-app.get("/", function (req, res) {
+app.get("/", async function (req, res) {
   res.send("Connected to nodejs");
-
-  user = { username: "comeondaddy", password: "password123" };
 });
 
 // Signup User
@@ -169,12 +168,24 @@ app.post(
         console.log("Error updating user's event list");
     } else console.log("Error inserting event data to database");
 
+    // create event-registrations and event-reviews tables
+    !(await events.initializeEvent(req.body.name)) &&
+      console.log("Error creating custom tables for event: " + req.body.name);
+
     res.send(null);
   }
 );
 
 app.post("/event-details", jsonParser, async function (req, res) {
   res.send(await events.getEventDetails(req.body.eventName));
+});
+
+app.post("/event-details/:type", jsonParser, async (req, res) => {
+  if (req.params.type === "registrations")
+    res.send(await events.getEventRegistrations(req.body.event));
+  else if (req.params.type === "reviews")
+    res.send(await events.getEventReviews(req.body.event));
+  else res.send(null);
 });
 
 app.listen(PORT, () => {

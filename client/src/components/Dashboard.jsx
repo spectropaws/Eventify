@@ -41,7 +41,6 @@ function Dashboard() {
   useEffect(() => {
     if (!events.fetched && user.loggedIn && user.events) {
       user.events.forEach((event) => {
-        console.log(event);
         request
           .post("/event-details", { eventName: event })
           .then((res) => {
