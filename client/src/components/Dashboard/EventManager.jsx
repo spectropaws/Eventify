@@ -12,9 +12,21 @@ function EventManager(props) {
     var current;
 
     if (props.page === "event")
-      current = <EventDetails page={props.setPage} user={props.user} />;
+      current = (
+        <EventDetails
+          page={props.setPage}
+          user={props.user}
+          event={props.currentEvent}
+        />
+      );
     else if (props.page === "prevEvent")
-      current = <PreviousEventDetails page={props.setPage} user={props.user} />;
+      current = (
+        <PreviousEventDetails
+          page={props.setPage}
+          user={props.user}
+          event={props.currentEvent}
+        />
+      );
     else if (props.page === "editProfile")
       current = (
         <EditProfile
@@ -29,7 +41,13 @@ function EventManager(props) {
       current = (
         <>
           <UserProfile user={props.user} page={props.setPage} />
-          <Main page={props.setPage} user={props.user} events={props.events} />
+          <Main
+            page={props.setPage}
+            currentPage={props.page}
+            user={props.user}
+            events={props.events}
+            setEvent={props.setEvent}
+          />
         </>
       );
 

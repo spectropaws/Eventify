@@ -24,8 +24,8 @@ function EditProfile(props) {
     username: props.user.username,
     name: props.user.name,
     designation: props.user.designation,
-    organization: props.user.organization,
-    bio: props.user.description,
+    organization: props.user.organization || "",
+    bio: props.user.description || "",
     email: props.user.email,
     gender: props.user.gender
       ? "male"
@@ -34,11 +34,11 @@ function EditProfile(props) {
       : "female",
     age: props.user.age,
     social: {
-      phone: props.user.social.phone,
-      facebook: props.user.social.facebook,
-      instagram: props.user.social.instagram,
-      linkedin: props.user.social.linkedin,
-      twitter: props.user.social.twitter,
+      phone: props.user.social.phone || "",
+      facebook: props.user.social.facebook || "",
+      instagram: props.user.social.instagram || "",
+      linkedin: props.user.social.linkedin || "",
+      twitter: props.user.social.twitter || "",
     },
   });
 

@@ -10,9 +10,14 @@ const credentials = {
   port: process.env.DB_PORT,
 };
 
-const pool = new Pool(credentials);
+var pool = new Pool(credentials);
 
 const runQuery = async (query, values) => {
+  console.log(pool.idleCount);
+  if (pool.idleCount === 8) {
+    await pool.end();
+    pool = new Pool(credentials);
+  }
   const client = await pool.connect();
   const res = await client.query(query, values);
   client.release();
@@ -110,7 +115,7 @@ async function addEventName(username, events) {
 
 async function insertEvent(values) {
   const query =
-    "insert into events(creator, name, tickets, price, description, city, venue, starttime, endtime, registrationclosetime, backgroundimage, qrcode) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)";
+    "insert into events(creator, name, tickets, price, description, city, venue, starttime, endtime, registrationclosetime, backgroundimage, qrcode, upiid) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)";
   try {
     await runQuery(query, values);
     return true;
@@ -128,17 +133,16 @@ async function fetchEventDetails(eventName) {
 }
 
 async function grantPermission(eventName) {
-  const query = "ALTER TABLE IF EXISTS $1 OWNER TO $2;";
-  const values = [eventName, process.env.DB_USERNAME];
-
+  const query = "ALTER TABLE IF EXISTS public." + eventName + " OWNER TO $1;";
+  const values = [process.env.DB_USERNAME];
   runQuery(query, values);
 }
 
 async function fetchEventRegAndReviews(eventName, type) {
-  const query = "select * from $1_$2";
-  const values = [eventName, type];
+  const query = "select * from " + eventName + "_" + type;
   try {
-    return await runQuery(query, values);
+    let result = await runQuery(query, []);
+    return result.rows;
   } catch (e) {
     return null;
   }

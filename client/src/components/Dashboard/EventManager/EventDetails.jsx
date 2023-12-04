@@ -1,8 +1,33 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./../dashboard.module.css";
+import axios from "axios";
+
+const request = axios.create({
+  withCredentials: true,
+  baseURL: process.env.REACT_APP_API_SERVER,
+});
 
 function EventDetails(props) {
+  const [registrations, setRegistrations] = useState({ fetched: false });
+  useEffect(() => {
+    if (!registrations.fetched) {
+      request
+        .post("/event-details/registrations", { event: props.event.name })
+        .then((res) =>
+          setRegistrations((prevValue) => ({
+            ...prevValue,
+            list: res.data,
+            fetched: true,
+          }))
+        )
+        .catch((e) => {
+          console.log(e);
+          setRegistrations((prevValue) => ({ ...prevValue, fetched: true }));
+        });
+    }
+  }, [props.event, registrations.fetched]);
+
   function handleCloseEvent() {
     props.page("main");
   }
@@ -10,9 +35,7 @@ function EventDetails(props) {
   return (
     <>
       <section className={styles["back-cover"]}>
-        <h1 className={styles["primary-heading"]}>
-          Arduino Workshop (Hands on Session)
-        </h1>
+        <h1 className={styles["primary-heading"]}>{props.event.name}</h1>
         <a
           href="#"
           className={`${styles.btn} ${styles["btn-close"]}`}
@@ -24,25 +47,17 @@ function EventDetails(props) {
 
       <section className={styles["event-details-section"]}>
         <div className={styles["event-descrip"]}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-            voluptatibus tempora quo, numquam fuga sapiente odit vitae fugiat
-            sed rerum eveniet labore sit accusamus officiis beatae omnis dolore
-            itaque provident? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Quidem, voluptatibus tempora quo, numquam fuga sapiente odit
-            vitae fugiat sed rerum eveniet labore sit accusamus officiis beatae
-            omnis dolore itaque provident? itaque provident?
-          </p>
+          <p>{props.event.description}</p>
         </div>
         <div className={styles["event-registration"]}>
           <div className={styles["reg-rev-card"]}>
-            <h3 className={styles["quaternary-heading"]}>
-              Arduino Workshop (Hands on Session)
-            </h3>
+            <h3 className={styles["quaternary-heading"]}>{props.event.name}</h3>
             <div className={styles["info-field-container"]}>
               <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
                 <i className="fa-solid fa-calendar"></i>
-                <span>Event Dated for: 12/12/2023</span>
+                <span>
+                  Event Dated for: {[props.event.starttime.split("T")[0]]}
+                </span>
               </div>
             </div>
             <a
@@ -67,48 +82,17 @@ function EventDetails(props) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Eren Yeager</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Mikasa Ackermann</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Armin Arlett</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Erwin Smith</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Grisha Yeager</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Carla Yeager</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Onyankopon oadnc9uworasckmpaehf</td>
-              <td>26/11/2023</td>
-              <td>WE9764892YHF9B9W72</td>
-            </tr>
+            {registrations.list &&
+              registrations.list.map((customer, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{customer.name}</td>
+                    <td>{false && customer.paymentdate.split("T")[0]}</td>
+                    <td>{customer.transactionid}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </section>

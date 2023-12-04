@@ -26,6 +26,8 @@ function Userspace(props) {
                 setPage={setPage}
                 setUser={props.setUser}
                 events={props.events}
+                currentEvent={props.currentEvent}
+                setEvent={props.setEvent}
               />
             ) : (
               <User

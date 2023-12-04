@@ -2,13 +2,13 @@
 import React from "react";
 import styles from "./../dashboard.module.css";
 
-function UpcomingEventsCard(props) {
-  function handleDetails() {
+function PreviousEventsCard(props) {
+  function handlePrevDetails() {
     props.setEvent((prevValue) => ({
       ...prevValue,
       currentEvent: props.event,
     }));
-    props.page("event");
+    props.page("prevEvent");
   }
 
   const backgroundImageUrl =
@@ -37,39 +37,46 @@ function UpcomingEventsCard(props) {
               <i className="fa-solid fa-calendar"></i>
               <span>
                 Event Date:{" "}
-                {props.event.starttime.replace(/T/, " ").replace(/\..+/, "")}
+                {
+                  props.event.starttime
+                    .replace(/T/, " ")
+                    .replace(/\..+/, "")
+                    .split(" ")[0]
+                }
+                <br />
+                Time:{" "}
+                {
+                  props.event.starttime
+                    .replace(/T/, " ")
+                    .replace(/\..+/, "")
+                    .split(" ")[1]
+                }
               </span>
-            </div>
-            <div className={`${styles["info-field"]} ${styles["if-time"]}`}>
-              <i className="fa-solid fa-clock"></i>
-              <span>
-                Duration:{" "}
-                {parseFloat(
-                  (new Date(props.event.endtime) -
-                    new Date(props.event.starttime)) /
-                    (1000 * 60 * 60)
-                )}{" "}
-                hours
-              </span>
-            </div>
-            <div className={`${styles["info-field"]} ${styles["if-tickets"]}`}>
-              <i className="fa-solid fa-ticket"></i>
-              <span>Tickets available: {props.event.tickets}</span>
             </div>
             <div className={`${styles["info-field"]} ${styles["if-reg"]}`}>
               <i className="fa-solid fa-registered"></i>
               <span>
-                Registrations done:{" "}
+                Registrations:{" "}
                 {props.event.registrations
                   ? props.event.registrations.length
                   : 0}
+              </span>
+            </div>
+            <div className={`${styles["info-field"]} ${styles["if-rating"]}`}>
+              <i className="fa-solid fa-star"></i>
+              <span>
+                Rating:{" "}
+                {props.event.reviews.reduce(
+                  (acc, currentRating) => acc + parseInt(currentRating.stars),
+                  0
+                ) / props.event.reviews.length || "No reviews"}
               </span>
             </div>
           </div>
           <a
             href="#"
             className={`${styles.btn} ${styles["know-more-btn"]}`}
-            onClick={handleDetails}
+            onClick={handlePrevDetails}
           >
             Know More
           </a>
@@ -79,4 +86,4 @@ function UpcomingEventsCard(props) {
   );
 }
 
-export default UpcomingEventsCard;
+export default PreviousEventsCard;

@@ -1,5 +1,6 @@
 const PORT = process.env.PORT || 8080;
 const cors = require("cors");
+const timeout = require("connect-timeout");
 
 const randomstring = require("randomstring");
 const express = require("express");
@@ -35,6 +36,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.static("public"));
+app.use(haltOnTimedout);
 app.use(
   cors({
     origin: [process.env.REACT_ORIGIN],
@@ -93,11 +95,13 @@ app.post("/signup", jsonParser, async (req, res) => {
 });
 
 // SignIn User
-app.post("/signin", jsonParser, async (req, res) => {
+app.post("/signin", jsonParser, timeout("3s"), async (req, res) => {
   if (req.body.token) {
     const username = currentSessions[req.body.token];
     if (username) {
-      return res.send(await auth.getUserData(username));
+      const data = await auth.getUserData(username);
+      if (data) return res.send(await auth.getUserData(username));
+      else return res.send(null);
     } else return res.send(null);
   }
 
@@ -177,7 +181,12 @@ app.post(
 );
 
 app.post("/event-details", jsonParser, async function (req, res) {
-  res.send(await events.getEventDetails(req.body.eventName));
+  var mainDetails = await events.getEventDetails(req.body.eventName);
+  mainDetails.registrations = await events.getEventRegistrations(
+    req.body.eventName
+  );
+  mainDetails.reviews = await events.getEventReviews(req.body.eventName);
+  res.send(mainDetails);
 });
 
 app.post("/event-details/:type", jsonParser, async (req, res) => {
@@ -187,6 +196,10 @@ app.post("/event-details/:type", jsonParser, async (req, res) => {
     res.send(await events.getEventReviews(req.body.event));
   else res.send(null);
 });
+
+function haltOnTimedout(req, res, next) {
+  if (!req.timedout) next();
+}
 
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);

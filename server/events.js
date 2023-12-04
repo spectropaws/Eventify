@@ -19,6 +19,7 @@ async function createEvent(event) {
     await dateFormat(event.registrationclosetime),
     event.backgroundimage,
     event.qrcode,
+    event.upiid,
   ];
 
   if (await database.insertEvent(values)) return true;
@@ -30,12 +31,11 @@ async function getEventDetails(eventName) {
 }
 
 async function getEventRegistrations(eventName) {
-  return await database.fetchEventRegAndReviews(eventName, "registrations")
-    .rows;
+  return await database.fetchEventRegAndReviews(eventName, "registrations");
 }
 
 async function getEventReviews(eventName) {
-  return await database.fetchEventRegAndReviews(eventName, "reviews").rows;
+  return await database.fetchEventRegAndReviews(eventName, "reviews");
 }
 
 async function initializeEvent(eventName) {
@@ -51,7 +51,7 @@ async function initializeEvent(eventName) {
   try {
     await database.runQuery(registration_query, []);
     await database.runQuery(reviews_query, []);
-    database.grantPermission(eventName);
+    // database.grantPermission(eventName);
     return true;
   } catch (e) {
     return false;

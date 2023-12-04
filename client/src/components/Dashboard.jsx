@@ -7,6 +7,7 @@ function Dashboard() {
   const [user, setUser] = useState({ loggedIn: false });
   const [events, setEvents] = useState({
     eventList: user.events || [],
+    currentEvent: null,
     fetched: false,
   });
 
@@ -17,13 +18,17 @@ function Dashboard() {
     withCredentials: true,
     baseURL: process.env.REACT_APP_API_SERVER,
   });
+  request.defaults.timeout = 5000;
 
   useEffect(() => {
     if (!user.loggedIn) {
+      console.log("signing in");
+      console.log("token: " + token);
       if (!token) navigate("/");
       request
         .post("/signin", { token: token })
         .then((response) => {
+          console.log(response.data);
           if (response.data) {
             setUser({ ...response.data, loggedIn: true });
           } else {
@@ -32,11 +37,15 @@ function Dashboard() {
             navigate("/");
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("token");
+          navigate("/");
+        });
 
-      //console.log(events);
+      console.log(user);
     }
-  }, [request, token, navigate, user]);
+  });
 
   useEffect(() => {
     if (!events.fetched && user.loggedIn && user.events) {
@@ -63,6 +72,8 @@ function Dashboard() {
           user={user}
           setUser={setUser}
           events={events.eventList}
+          currentEvent={events.currentEvent}
+          setEvent={setEvents}
         />
       )}
     </>
