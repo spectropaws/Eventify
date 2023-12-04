@@ -1,5 +1,4 @@
-const { query } = require("express");
-const { Pool } = require("pg");
+const { Client } = require("pg");
 require("dotenv").config();
 
 const credentials = {
@@ -10,17 +9,13 @@ const credentials = {
   port: process.env.DB_PORT,
 };
 
-var pool = new Pool(credentials);
+// var pool = new Pool(credentials);
 
 const runQuery = async (query, values) => {
-  console.log(pool.idleCount);
-  if (pool.idleCount === 8) {
-    await pool.end();
-    pool = new Pool(credentials);
-  }
-  const client = await pool.connect();
+  const client = new Client(credentials);
+  await client.connect();
   const res = await client.query(query, values);
-  client.release();
+  client.end();
   return res;
 };
 
@@ -63,9 +58,9 @@ async function fetchUserDetails(username) {
   const query = "select * from users where username = $1";
   const values = [username];
 
-  const res = await runQuery(query, values);
-  delete res.passwordhash;
-  delete res.salt;
+  var res = await runQuery(query, values);
+  delete res.rows[0].passwordhash;
+  delete res.rows[0].salt;
   return res.rows[0];
 }
 // ====================================

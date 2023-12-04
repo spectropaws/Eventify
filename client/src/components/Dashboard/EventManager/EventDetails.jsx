@@ -1,32 +1,32 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import styles from "./../dashboard.module.css";
-import axios from "axios";
+// import axios from "axios";
 
-const request = axios.create({
-  withCredentials: true,
-  baseURL: process.env.REACT_APP_API_SERVER,
-});
+// const request = axios.create({
+//   withCredentials: true,
+//   baseURL: process.env.REACT_APP_API_SERVER,
+// });
 
 function EventDetails(props) {
-  const [registrations, setRegistrations] = useState({ fetched: false });
-  useEffect(() => {
-    if (!registrations.fetched) {
-      request
-        .post("/event-details/registrations", { event: props.event.name })
-        .then((res) =>
-          setRegistrations((prevValue) => ({
-            ...prevValue,
-            list: res.data,
-            fetched: true,
-          }))
-        )
-        .catch((e) => {
-          console.log(e);
-          setRegistrations((prevValue) => ({ ...prevValue, fetched: true }));
-        });
-    }
-  }, [props.event, registrations.fetched]);
+  //   const [registrations, setRegistrations] = useState({ fetched: false });
+  //   useEffect(() => {
+  //     if (!registrations.fetched) {
+  //       request
+  //         .post("/event-details/registrations", { event: props.event.name })
+  //         .then((res) =>
+  //           setRegistrations((prevValue) => ({
+  //             ...prevValue,
+  //             list: res.data,
+  //             fetched: true,
+  //           }))
+  //         )
+  //         .catch((e) => {
+  //           console.log(e);
+  //           setRegistrations((prevValue) => ({ ...prevValue, fetched: true }));
+  //         });
+  //     }
+  //   }, [props.event, registrations.fetched]);
 
   function handleCloseEvent() {
     props.page("main");
@@ -82,8 +82,8 @@ function EventDetails(props) {
             </tr>
           </thead>
           <tbody>
-            {registrations.list &&
-              registrations.list.map((customer, index) => {
+            {props.event.registrations &&
+              props.event.registrations.map((customer, index) => {
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>

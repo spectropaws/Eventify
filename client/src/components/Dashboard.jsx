@@ -22,13 +22,10 @@ function Dashboard() {
 
   useEffect(() => {
     if (!user.loggedIn) {
-      console.log("signing in");
-      console.log("token: " + token);
       if (!token) navigate("/");
       request
         .post("/signin", { token: token })
         .then((response) => {
-          console.log(response.data);
           if (response.data) {
             setUser({ ...response.data, loggedIn: true });
           } else {
@@ -42,8 +39,6 @@ function Dashboard() {
           localStorage.removeItem("token");
           navigate("/");
         });
-
-      console.log(user);
     }
   });
 
