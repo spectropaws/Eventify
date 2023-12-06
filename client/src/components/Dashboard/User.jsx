@@ -11,16 +11,22 @@ function User(props) {
   if (props.page === "main") {
     return (
       <>
-        <Main page={props.page} user={props.user} setPage={props.setPage} />
+        <Main
+          page={props.page}
+          user={props.user}
+          setPage={props.setPage}
+          events={props.events}
+          setEvent={props.setEvent}
+        />
       </>
     );
   } else if (props.page === "event") {
     return (
       <>
         <EventDetails
-          page={props.page}
+          page={props.setPage}
           user={props.user}
-          setPage={props.setPage}
+          event={props.currentEvent}
         />
       </>
     );
@@ -43,9 +49,21 @@ function User(props) {
       />
     );
   else if (props.page === "searchEvents")
-    return <SearchEvents page={props.setPage} />;
+    return (
+      <SearchEvents
+        page={props.setPage}
+        events={props.events}
+        setEvent={props.setEvent}
+      />
+    );
   else if (props.page === "eventRegistration")
-    return <EventRegistration page={props.setPage} />;
+    return (
+      <EventRegistration
+        page={props.setPage}
+        event={props.currentEvent}
+        user={props.user}
+      />
+    );
   else if (props.page === "belovedOrganizer")
     return <BelovedOrganizer page={props.setPage} />;
 }

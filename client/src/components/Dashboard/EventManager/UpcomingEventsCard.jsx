@@ -25,7 +25,7 @@ function UpcomingEventsCard(props) {
           style={
             props.event.backgroundimage && {
               background: `url(${backgroundImageUrl})`,
-              backgrounSize: "contain",
+              backgroundSize: "cover",
               backgroundPosition: "center",
             }
           }

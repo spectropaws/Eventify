@@ -46,7 +46,7 @@ function Dashboard() {
     if (!events.fetched && user.loggedIn && user.events) {
       user.events.forEach((event) => {
         request
-          .post("/event-details", { eventName: event })
+          .post("/event-details", { eventName: event, role: user.role })
           .then((res) => {
             setEvents((prevValue) => ({
               ...prevValue,

@@ -4,15 +4,26 @@ import styles from "./../dashboard.module.css";
 
 function EventDetails(props) {
   function closeEventDetails() {
-    props.setPage("main");
+    props.page("main");
   }
+  const backgroundImageUrl =
+    process.env.REACT_APP_API_SERVER +
+    "/images/event/" +
+    props.event.backgroundimage;
+
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
 
   return (
     <>
-      <section className={styles["back-cover"]}>
-        <h1 className={styles["primary-heading"]}>
-          Arduino Workshop (Hands on Session)
-        </h1>
+      <section
+        className={styles["back-cover"]}
+        style={props.event.backgroundimage && backgroundStyle}
+      >
+        <h1 className={styles["primary-heading"]}>{props.event.name}</h1>
         <a
           href="#"
           className={`${styles.btn} ${styles["btn-close"]}`}
@@ -24,35 +35,34 @@ function EventDetails(props) {
 
       <section className={styles["event-details-section"]}>
         <div className={styles["event-descrip"]}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-            voluptatibus tempora quo, numquam fuga sapiente odit vitae fugiat
-            sed rerum eveniet labore sit accusamus officiis beatae omnis dolore
-            itaque provident? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Quidem, voluptatibus tempora quo, numquam fuga sapiente odit
-            vitae fugiat sed rerum eveniet labore sit accusamus officiis beatae
-            omnis dolore itaque provident? itaque provident?
-          </p>
+          <p>{props.event.description}</p>
         </div>
         <div className={styles["registered-event"]}>
           <div className={styles["reg-event-card"]}>
-            <h3 className={styles["tertiary-heading"]}>
-              Arduino Workshop (Hands on Session)
-            </h3>
+            <h3 className={styles["tertiary-heading"]}>{props.event.name}</h3>
             <div className={styles["info-field-container"]}>
               <div className={`${styles["info-field"]} ${styles["if-date"]}`}>
                 <i className="fa-solid fa-calendar"></i>
-                <span>Event Date: 12/12/2023</span>
+                <span>
+                  Event Date:{" "}
+                  {props.event.starttime.replace(/T/, " ").replace(/\..+/, "")}
+                </span>
               </div>
               <div className={`${styles["info-field"]} ${styles["if-time"]}`}>
                 <i className="fa-solid fa-clock"></i>
-                <span>Duration: 2 hours</span>
+                <span>
+                  Duration:{" "}
+                  {(new Date(props.event.endtime) -
+                    new Date(props.event.starttime)) /
+                    (1000 * 60 * 60)}{" "}
+                  hours
+                </span>
               </div>
               <div
                 className={`${styles["info-field"]} ${styles["if-fees-paid"]}`}
               >
                 <i class="fa-solid fa-money-bill"></i>
-                <span>Fees paid: Rs. 500</span>
+                <span>Fees paid: Rs. {props.event.price}</span>
               </div>
               <div
                 className={`${styles["info-field"]} ${styles["if-trans-status"]}`}

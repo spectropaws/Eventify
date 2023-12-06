@@ -143,6 +143,38 @@ async function fetchEventRegAndReviews(eventName, type) {
   }
 }
 
+async function getAllEventNames() {
+  const query = "select events from users where role = $1";
+  const values = [true];
+  let eventNames = [];
+
+  var res = await runQuery(query, values);
+  res.rows.forEach((row) => (eventNames = eventNames.concat(row.events)));
+  return eventNames;
+}
+
+async function insertEventRegistration(details) {
+  const query =
+    "insert into " +
+    details.eventName +
+    "_registrations (name, username, email, phone, paymentdate, transactionid) values($1, $2, $3, $4, $5, $6)";
+  const values = [
+    details.name,
+    details.username,
+    details.email,
+    details.phone,
+    details.paymentdate,
+    details.transactionid,
+  ];
+
+  try {
+    await runQuery(query, values);
+    return true;
+  } catch (e) {
+    return null;
+  }
+}
+
 exports.runQuery = runQuery;
 exports.userExists = userExists;
 exports.register = register;
@@ -155,3 +187,5 @@ exports.insertEvent = insertEvent;
 exports.fetchEventDetails = fetchEventDetails;
 exports.grantPermission = grantPermission;
 exports.fetchEventRegAndReviews = fetchEventRegAndReviews;
+exports.getAllEventNames = getAllEventNames;
+exports.insertEventRegistration = insertEventRegistration;

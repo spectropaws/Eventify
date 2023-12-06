@@ -26,7 +26,7 @@ let storage = multer.diskStorage({
     );
   },
 });
-let upload = multer({ storage: storage });
+let upload = multer({ storage: storage, limits: { fieldSize: 10485760 } });
 
 const jsonParser = bodyParser.json();
 const auth = require("./auth/authenticate");
@@ -67,6 +67,10 @@ function generateToken() {
 
 app.get("/", async function (req, res) {
   res.send("Connected to nodejs");
+});
+
+app.post("/allevents", jsonParser, async function (req, res) {
+  res.send(await events.getAllEvents());
 });
 
 // Signup User
@@ -158,6 +162,7 @@ app.post("/edit-profile", jsonParser, async function (req, res) {
   res.send(null);
 });
 
+// add events
 app.post(
   "/create/:type",
   upload.single("backgroundimage"),
@@ -189,12 +194,20 @@ app.post("/event-details", jsonParser, async function (req, res) {
   res.send(mainDetails);
 });
 
-app.post("/event-details/:type", jsonParser, async (req, res) => {
-  if (req.params.type === "registrations")
-    res.send(await events.getEventRegistrations(req.body.event));
-  else if (req.params.type === "reviews")
-    res.send(await events.getEventReviews(req.body.event));
-  else res.send(null);
+// app.post("/event-details/:type", jsonParser, async (req, res) => {
+//   if (req.params.type === "registrations")
+//     res.send(await events.getEventRegistrations(req.body.event));
+//   else if (req.params.type === "reviews")
+//     res.send(await events.getEventReviews(req.body.event));
+//   else res.send(null);
+// });
+
+app.post("/register", jsonParser, async (req, res) => {
+  events.registerUser(req.body);
+  editor
+    .addEvent(req.body.username, req.body.eventName)
+    .then((res) => !res && console.log("Error updating user's event list"));
+  res.send(null);
 });
 
 function haltOnTimedout(req, res, next) {

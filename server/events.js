@@ -1,4 +1,3 @@
-const { query } = require("express");
 const database = require("./db/database");
 
 async function dateFormat(date) {
@@ -58,8 +57,24 @@ async function initializeEvent(eventName) {
   }
 }
 
+async function getAllEvents() {
+  const eventNames = await database.getAllEventNames();
+  var promises = [];
+  eventNames.forEach(async (eventName) => {
+    promises.push(database.fetchEventDetails(eventName));
+  });
+  events = await Promise.all(promises);
+  return events;
+}
+
+async function registerUser(details) {
+  return (await database.insertEventRegistration(details)) ? true : false;
+}
+
 exports.createEvent = createEvent;
 exports.getEventDetails = getEventDetails;
 exports.initializeEvent = initializeEvent;
 exports.getEventRegistrations = getEventRegistrations;
 exports.getEventReviews = getEventReviews;
+exports.getAllEvents = getAllEvents;
+exports.registerUser = registerUser;
