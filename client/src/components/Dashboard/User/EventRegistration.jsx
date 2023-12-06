@@ -59,18 +59,30 @@ function EventRegistration(props) {
                   <span>Duration: 2 hours</span>
                 </div>
 
+                <div className={`${styles["info-field"]} ${styles["if-city"]}`}>
+                  <i className="fa-solid fa-city"></i>
+                  <span>City: Nagpur</span>
+                </div>
+
                 <div className={`${styles["info-field"]} ${styles["if-fees"]}`}>
                   <i class="fa-solid fa-sack-dollar"></i>
                   <span>Registration Fees: Rs 500</span>
                 </div>
+
+                <div
+                  className={`${styles["info-field"]} ${styles["if-reg-close"]}`}
+                >
+                  <i className="fa-solid fa-clock"></i>
+                  <span>Last date: 23/12/2023</span>
+                </div>
               </div>
             </div>
             <div className={styles.col2}>
-              <span className={styles["reg-note"]}>
-                Scan the QR code to register!
-              </span>
+              <span className={styles["reg-note"]}>Get yourself enrolled!</span>
               <div className={styles.qrcode} role="img"></div>
-              <form>
+              <span className={styles["reg-note"]}>or</span>
+              <span className={styles["reg-note"]}>UPI ID: 9822486223@xyz</span>
+              <form className={styles["trans-id-form"]}>
                 <label className={styles["label-trans-id"]} htmlFor="trans-id">
                   Enter Transaction Id:
                 </label>

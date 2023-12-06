@@ -1201,6 +1201,10 @@ tbody tr:nth-child(even) {
   align-self: center;
 }
 
+.trans-id-form {
+  margin-top: 1.2rem;
+}
+
 .label-trans-id {
   font-size: 1.6rem;
   font-weight: 500;
