@@ -87,16 +87,7 @@ function BelovedOrganizer(props) {
                   <i class="fa-solid fa-clock"></i>
                   <span>Duration: 3 hours</span>
                 </div>
-                <div
-                  className={`${styles["info-field"]} ${styles["if-tickets"]}`}
-                >
-                  <i class="fa-solid fa-sack-dollar"></i>
-                  <span>Registration fees: Rs. 500</span>
-                </div>
               </div>
-              <a href="#" className={`${styles.btn} ${styles["reg-now-btn"]}`}>
-                Register Now
-              </a>
             </div>
           </div>
 
@@ -121,16 +112,7 @@ function BelovedOrganizer(props) {
                   <i class="fa-solid fa-clock"></i>
                   <span>Duration: 3 hours</span>
                 </div>
-                <div
-                  className={`${styles["info-field"]} ${styles["if-tickets"]}`}
-                >
-                  <i class="fa-solid fa-sack-dollar"></i>
-                  <span>Registration fees: Rs. 500</span>
-                </div>
               </div>
-              <a href="#" className={`${styles.btn} ${styles["reg-now-btn"]}`}>
-                Register Now
-              </a>
             </div>
           </div>
 
@@ -155,16 +137,7 @@ function BelovedOrganizer(props) {
                   <i class="fa-solid fa-clock"></i>
                   <span>Duration: 3 hours</span>
                 </div>
-                <div
-                  className={`${styles["info-field"]} ${styles["if-tickets"]}`}
-                >
-                  <i class="fa-solid fa-sack-dollar"></i>
-                  <span>Registration fees: Rs. 500</span>
-                </div>
               </div>
-              <a href="#" className={`${styles.btn} ${styles["reg-now-btn"]}`}>
-                Register Now
-              </a>
             </div>
           </div>
 
@@ -189,16 +162,7 @@ function BelovedOrganizer(props) {
                   <i class="fa-solid fa-clock"></i>
                   <span>Duration: 3 hours</span>
                 </div>
-                <div
-                  className={`${styles["info-field"]} ${styles["if-tickets"]}`}
-                >
-                  <i class="fa-solid fa-sack-dollar"></i>
-                  <span>Registration fees: Rs. 500</span>
-                </div>
               </div>
-              <a href="#" className={`${styles.btn} ${styles["reg-now-btn"]}`}>
-                Register Now
-              </a>
             </div>
           </div>
         </div>
