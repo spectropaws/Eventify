@@ -72,7 +72,7 @@ function PreviousEventDetails(props) {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{customer.name}</td>
-                    <td>{false && customer.paymentdate.split("T")[0]}</td>
+                    <td>{customer.paymentdate.split("T")[0]}</td>
                     <td>{customer.transactionid}</td>
                   </tr>
                 );

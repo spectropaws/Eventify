@@ -59,8 +59,10 @@ async function fetchUserDetails(username) {
   const values = [username];
 
   var res = await runQuery(query, values);
-  delete res.rows[0].passwordhash;
-  delete res.rows[0].salt;
+  if (res.rows.length > 0) {
+    delete res.rows[0].passwordhash;
+    delete res.rows[0].salt;
+  }
   return res.rows[0];
 }
 // ====================================
@@ -175,6 +177,20 @@ async function insertEventRegistration(details) {
   }
 }
 
+async function insertReview(review) {
+  const query =
+    "insert into " +
+    review.eventName +
+    "_reviews (username, stars, review) values ($1, $2, $3)";
+  const values = [review.username, review.stars, review.review];
+  try {
+    await runQuery(query, values);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 exports.runQuery = runQuery;
 exports.userExists = userExists;
 exports.register = register;
@@ -189,3 +205,4 @@ exports.grantPermission = grantPermission;
 exports.fetchEventRegAndReviews = fetchEventRegAndReviews;
 exports.getAllEventNames = getAllEventNames;
 exports.insertEventRegistration = insertEventRegistration;
+exports.insertReview = insertReview;

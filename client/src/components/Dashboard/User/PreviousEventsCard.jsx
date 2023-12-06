@@ -44,10 +44,12 @@ function PreviousEventsCard(props) {
               <i className="fa-solid fa-star"></i>
               <span>
                 Rating:{" "}
-                {props.event.reviews.reduce(
-                  (acc, review) => acc + parseInt(review.stars),
-                  0
-                ) / props.event.reviews.length || "No reviews yet"}
+                {(
+                  props.event.reviews.reduce(
+                    (acc, review) => acc + parseInt(review.stars),
+                    0
+                  ) / props.event.reviews.length
+                ).toFixed(2) || "No reviews yet"}
               </span>
             </div>
           </div>

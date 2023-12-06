@@ -47,8 +47,13 @@ function AddEvent(props) {
     if (name === "backgroundimage") value = event.target.files[0];
     else if (name === "qrcode") {
       value = await getBase64(event.target.files[0]);
-    } else value = event.target.value;
-    setEvent((prevValue) => ({ ...prevValue, [name]: value }));
+    } else if (name === "name") value = event.target.value.replaceAll(" ", "");
+    else value = event.target.value;
+
+    setEvent((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
   }
 
   function createEvent() {
@@ -188,6 +193,7 @@ function AddEvent(props) {
                       showTimeSelect
                       placeholderText="Start"
                       selected={event.starttime}
+                      minDate={new Date()}
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
                       onChange={(date) =>
                         setEvent((prevValue) => ({
@@ -196,19 +202,12 @@ function AddEvent(props) {
                         }))
                       }
                     />
-                    {/* <input
-                      type="text"
-                      name="starttime"
-                      placeholder="HH : MM"
-                      className={`${styles["in-event-details"]} ${styles["in-time"]}`}
-                      value={event.starttime}
-                      onChange={handleInput}
-                    /> */}
                     to
                     <DatePicker
                       showIcon
                       showTimeSelect
                       selected={event.endtime}
+                      minDate={new Date(event.starttime)}
                       placeholderText="End"
                       className={`${styles["in-event-details"]} ${styles["in-time"]}`}
                       onChange={(date) =>
@@ -218,14 +217,6 @@ function AddEvent(props) {
                         }))
                       }
                     />
-                    {/* <input
-                      type="text"
-                      name="endtime"
-                      placeholder="HH : MM"
-                      className={`${styles["in-event-details"]} ${styles["in-time"]}`}
-                      value={event.endtime}
-                      onChange={handleInput}
-                    /> */}
                   </span>
                 </div>
                 <div
@@ -234,18 +225,12 @@ function AddEvent(props) {
                   <i className="fa-solid fa-clock"></i>
                   <span>
                     Registration closes on:
-                    {/* <input
-                      type="text"
-                      name="registrationclosetime"
-                      placeholder="DD/MM/YYYY"
-                      className={`${styles["in-event-details"]} ${styles["in-reg-close"]}`}
-                      value={event.registrationclosetime}
-                      onChange={handleInput}
-                    /> */}
                     <DatePicker
                       showIcon
                       showTimeSelect
                       placeholderText="Choose date"
+                      minDate={new Date()}
+                      maxDate={new Date(event.starttime)}
                       className={`${styles["in-event-details"]} ${styles["in-reg-close"]}`}
                       selected={event.registrationclosetime}
                       onChange={(date) =>

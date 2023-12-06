@@ -30,7 +30,7 @@ function EventRegistration(props) {
     const id = e.target.value;
     setRegisterDetails((prevValue) => ({
       ...prevValue,
-      paymentdate: new Date().toISOString,
+      paymentdate: new Date().toISOString(),
       transactionid: id,
     }));
   }
@@ -174,16 +174,20 @@ function EventRegistration(props) {
                 className={`${styles.btn} ${styles["btn-reg-rev"]}`}
                 href="#"
                 onClick={
-                  new Date(props.event.registrationclosetime) >= new Date()
-                    ? submitRegistrationForm
-                    : () => {}
+                  new Date(props.event.registrationclosetime) < new Date() ||
+                  props.eventList.includes(props.event.name)
+                    ? () => {}
+                    : submitRegistrationForm
                 }
                 disabled={
-                  new Date(props.event.registrationclosetime) < new Date()
+                  new Date(props.event.registrationclosetime) < new Date() ||
+                  props.eventList.includes(props.event.name)
                 }
               >
                 {new Date(props.event.registrationclosetime) < new Date()
                   ? "Registration Closed!"
+                  : props.eventList.includes(props.event.name)
+                  ? "Already Registered!"
                   : "Enroll Yourself"}
               </a>
             </div>

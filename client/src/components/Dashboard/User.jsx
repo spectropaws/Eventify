@@ -34,9 +34,9 @@ function User(props) {
     return (
       <>
         <PreviousEventDetails
-          page={props.page}
+          page={props.setPage}
           user={props.user}
-          setPage={props.setPage}
+          event={props.currentEvent}
         />
       </>
     );
@@ -60,6 +60,7 @@ function User(props) {
     return (
       <EventRegistration
         page={props.setPage}
+        eventList={props.user.events}
         event={props.currentEvent}
         user={props.user}
       />

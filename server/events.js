@@ -71,6 +71,10 @@ async function registerUser(details) {
   return (await database.insertEventRegistration(details)) ? true : false;
 }
 
+async function addReview(review) {
+  return (await database.insertReview(review)) ? true : false;
+}
+
 exports.createEvent = createEvent;
 exports.getEventDetails = getEventDetails;
 exports.initializeEvent = initializeEvent;
@@ -78,3 +82,4 @@ exports.getEventRegistrations = getEventRegistrations;
 exports.getEventReviews = getEventReviews;
 exports.getAllEvents = getAllEvents;
 exports.registerUser = registerUser;
+exports.addReview = addReview;

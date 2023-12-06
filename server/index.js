@@ -210,6 +210,13 @@ app.post("/register", jsonParser, async (req, res) => {
   res.send(null);
 });
 
+app.post("/post-review", jsonParser, async (req, res) => {
+  events
+    .addReview(req.body)
+    .then((res) => !res && console.log("Error posting review!"));
+  res.send(null);
+});
+
 function haltOnTimedout(req, res, next) {
   if (!req.timedout) next();
 }
