@@ -27,7 +27,11 @@ function Dashboard() {
         .post("/signin", { token: token })
         .then((response) => {
           if (response.data) {
-            setUser({ ...response.data, loggedIn: true });
+            setUser({
+              ...response.data,
+              loggedIn: true,
+              events: response.data.events || [],
+            });
           } else {
             localStorage.removeItem("token");
             setUser({ loggedIn: false });
